@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://bjfu1s5gr1yhh"]
+
+[ext_resource type="Texture2D" uid="uid://b4y17l17kbe07" path="res://assets/terrain/RockyShadow.png" id="1_g2ica"]
+[ext_resource type="Script" path="res://breakable.gd" id="2_8dev8"]
+[ext_resource type="Script" path="res://Scripts/Components/hitbox_component.gd" id="3_ypamv"]
+[ext_resource type="Script" path="res://Scripts/Components/health_component.gd" id="4_rvvyw"]
+[ext_resource type="Script" path="res://Scripts/Environment/drop_through_platform.gd" id="5_fxop5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2pk5o"]
+size = Vector2(16, 5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v1fvj"]
+radius = 16.0312
+
+[node name="Rocks" type="Sprite2D" node_paths=PackedStringArray("health")]
+texture = ExtResource("1_g2ica")
+region_enabled = true
+region_rect = Rect2(191.346, 30.5386, 48.647, 34.0529)
+script = ExtResource("2_8dev8")
+health = NodePath("HealthComponent")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("4_rvvyw")
+
+[node name="DropThroughPlatform" type="StaticBody2D" parent="." node_paths=PackedStringArray("detection_area")]
+collision_mask = 2
+script = ExtResource("5_fxop5")
+detection_area = NodePath("Area2D")
+
+[node name="Area2D" type="Area2D" parent="DropThroughPlatform"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DropThroughPlatform/Area2D"]
+position = Vector2(0, -19.5)
+shape = SubResource("RectangleShape2D_2pk5o")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DropThroughPlatform"]
+polygon = PackedVector2Array(-8, -16, -7, -17, -2, -17, 3, -12, 4, -9, 9, -9, 13, -6, -15, -6)
+one_way_collision = true
+
+[node name="HitBoxComponent" type="Area2D" parent="DropThroughPlatform" node_paths=PackedStringArray("health_component")]
+script = ExtResource("3_ypamv")
+health_component = NodePath("../../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DropThroughPlatform/HitBoxComponent"]
+position = Vector2(-2, 1)
+shape = SubResource("CircleShape2D_v1fvj")

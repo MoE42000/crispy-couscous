@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://drmaxjtgx6w7n"]
+
+[ext_resource type="Script" path="res://Scripts/Environment/rocks.gd" id="1_eg8sj"]
+[ext_resource type="Texture2D" uid="uid://b4y17l17kbe07" path="res://assets/terrain/RockyShadow.png" id="2_q2fti"]
+[ext_resource type="Script" path="res://Scripts/Components/hitbox_component.gd" id="3_3ta85"]
+[ext_resource type="Script" path="res://Scripts/Components/health_component.gd" id="4_jtmfm"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0rp8p"]
+radius = 7.0
+height = 32.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3cbdw"]
+size = Vector2(7, 0.5)
+
+[node name="StandingShadowyRock" type="StaticBody2D"]
+collision_mask = 0
+script = ExtResource("1_eg8sj")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_q2fti")
+region_enabled = true
+region_rect = Rect2(206.939, 159.835, 17.7021, 34.0529)
+
+[node name="HitBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+script = ExtResource("3_3ta85")
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+position = Vector2(0, -1)
+shape = SubResource("CapsuleShape2D_0rp8p")
+debug_color = Color(0.754571, 0.362025, 0.716063, 0.42)
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("4_jtmfm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -17)
+shape = SubResource("RectangleShape2D_3cbdw")
+one_way_collision = true

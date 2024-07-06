@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://33hqhc547bqr"]
+
+[ext_resource type="TileSet" uid="uid://bitcdqbm4mdw7" path="res://resources/RockShadowTileset.tres" id="1_0muht"]
+
+[node name="TileMap" type="TileMap"]
+tile_set = ExtResource("1_0muht")
+format = 2
+layer_1/z_index = 1
+layer_1/tile_data = PackedInt32Array()

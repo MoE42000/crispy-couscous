@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjxs6pyutempp"]
+
+[ext_resource type="Script" path="res://Scripts/Environment/rocks.gd" id="1_cmbsp"]
+[ext_resource type="Texture2D" uid="uid://b4y17l17kbe07" path="res://assets/terrain/RockyShadow.png" id="1_lwvg7"]
+[ext_resource type="Script" path="res://Scripts/Components/hitbox_component.gd" id="2_o1eo6"]
+[ext_resource type="Script" path="res://Scripts/Components/health_component.gd" id="3_sag2w"]
+
+[node name="Rocks" type="StaticBody2D"]
+script = ExtResource("1_cmbsp")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_lwvg7")
+region_enabled = true
+region_rect = Rect2(191.346, 30.5386, 48.647, 34.0529)
+
+[node name="HitBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+script = ExtResource("2_o1eo6")
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitBoxComponent"]
+polygon = PackedVector2Array(-25, 6, -18, -1, -13, -11, -7, -17, -2, -17, 3, -12, 4, -9, 9, -9, 13, -6, 13, -3, 19, -3, 22, 0, 22, 3, 25, 6, 25, 17, -22, 17, -25, 13)
+disabled = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, -1)
+polygon = PackedVector2Array(-8, -16, -2, -16, 2, -13, 4, -9, 10, -8, 10, -7, -8, -7, -12, -12)
+one_way_collision = true
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("3_sag2w")
