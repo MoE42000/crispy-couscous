@@ -388,7 +388,6 @@ state_name = "run"
 
 [node name="Jump" type="Node" parent="StateMachine"]
 script = ExtResource("5_ylfsl")
-wall_jump_pushback = 300.0
 animation_name = "jump"
 state_name = "jump"
 
