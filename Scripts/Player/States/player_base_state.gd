@@ -4,9 +4,9 @@ extends State
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var animation_name : String
 
-var jump_buffer_time:float = .2
-var coyote_time:float = .5
-var attack_buffer_time:float = .1
+var jump_buffer_time:float = .1
+var coyote_time:float = .05
+var attack_buffer_time:float = .05
 
 var jump_buffer_timer :float
 var coyote_timer :float

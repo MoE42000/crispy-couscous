@@ -22,7 +22,7 @@ func process_physics(delta) -> void:
 		transitioned.emit(self, "fall")
 		
 	elif character.movement.wants_jump():
-		transitioned.emit(self, "jump")
+		transitioned.emit(self, "wall_jump")
 	
 	character.velocity.y += wall_slide_gravity * delta
 	character.velocity.y = min(character.velocity.y,wall_slide_gravity)

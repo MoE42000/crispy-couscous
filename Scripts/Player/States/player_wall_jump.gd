@@ -1,26 +1,12 @@
 extends PlayerState
-class_name PlayerJump
-
-@export var wall_jump_pushback : float
+class_name PlayerWallJump
 
 func enter() -> void:
 	super()
-	
-	if character.movement.get_up_down_input() > 0:
-		if !character.drop_through():
-			jump()
-	else:
-		jump()
-		
-	
-	
-func jump():
-	#TODO: Come up with personalized Jump func
-	character.velocity.y = character.jump_force
+	character.velocity.x = character.direction * -230
+	character.velocity.y = character.jump_force / 1.5
 
-	
-	
-	
+
 func process_physics(delta):
 	if  character.movement.wants_end_jump():
 		character.velocity.y = 0
@@ -30,8 +16,8 @@ func process_physics(delta):
 	if character.movement.wants_attack():
 		transitioned.emit(self,'attack')
 
-	var movement = character.direction * character.speed 
-	character.velocity.x = movement
+	#var movement = character.direction * character.speed 
+	#character.velocity.x = movement
 	
 	
 	if character.velocity.y > 0:
@@ -40,4 +26,3 @@ func process_physics(delta):
 
 	super(delta)
 	#character.move_and_slide()
-
