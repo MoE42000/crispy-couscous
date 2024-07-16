@@ -4,10 +4,10 @@ class_name PlayerSlide
 @export var wall_slide_gravity : float
 
 func enter() -> void:
-	pass # Replace with function body.
+	super()
 
 func exit() -> void:
-	pass
+	character.sprite.offset.x = 0
 
 func process_physics(delta) -> void:
 	

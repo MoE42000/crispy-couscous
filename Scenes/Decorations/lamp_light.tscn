@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0bsurryjspll"]
+
+[sub_resource type="Gradient" id="Gradient_dpohx"]
+offsets = PackedFloat32Array(0.00509338, 0.724958)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dr120"]
+gradient = SubResource("Gradient_dpohx")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="LampLight" type="PointLight2D"]
+color = Color(0.866667, 0.737255, 0.411765, 1)
+texture = SubResource("GradientTexture2D_dr120")

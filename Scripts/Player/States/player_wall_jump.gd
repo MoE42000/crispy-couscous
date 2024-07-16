@@ -1,11 +1,13 @@
 extends PlayerState
 class_name PlayerWallJump
 
+var jump_dir
+
 func enter() -> void:
 	super()
 	character.velocity.x = character.direction * -230
 	character.velocity.y = character.jump_force / 1.5
-
+	
 
 func process_physics(delta):
 	if  character.movement.wants_end_jump():
@@ -25,4 +27,3 @@ func process_physics(delta):
 	
 
 	super(delta)
-	#character.move_and_slide()

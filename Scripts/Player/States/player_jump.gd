@@ -33,7 +33,6 @@ func process_physics(delta):
 	var movement = character.direction * character.speed 
 	character.velocity.x = movement
 	
-	
 	if character.velocity.y > 0:
 		transitioned.emit(self, "fall") 
 	

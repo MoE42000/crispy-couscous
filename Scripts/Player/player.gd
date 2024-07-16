@@ -21,8 +21,8 @@ var drop_through_platform : Area2D
 var on_drop_through_platform : bool
 
 var direction : float
-var speed :float = 200.00
-var jump_force:float = -400.00
+var speed :float = 160.00
+var jump_force:float = -315.00
 
 func _ready() -> void:
 	health_component.health_depleted.connect(player_died)
@@ -61,5 +61,7 @@ func _on_body_exited(body):
 func _changed_facing_direction(facing_right:bool):
 	if facing_right:
 		raycast.target_position = raycast.facing_right_pos
+		sprite.position = Vector2(8,-14)
 	else:
 		raycast.target_position = raycast.facing_left_pos
+		sprite.position = Vector2(-8,-14)

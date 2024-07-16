@@ -7,7 +7,7 @@ func enter():
 	attack_buffer_timer = 0
 	if !character.animation_tree.animation_finished.is_connected(attack_finished):
 		character.animation_tree.animation_finished.connect(attack_finished)
-	character.sprite.offset.x = -6 if character.sprite.flip_h else 6
+
 	
 func exit():
 	pass
