@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://chsry4aj6ykmv"]
+[gd_scene load_steps=61 format=3 uid="uid://chsry4aj6ykmv"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_u7ms0"]
 [ext_resource type="Script" path="res://Scripts/Player/States/player_run.gd" id="4_a214h"]
@@ -24,7 +24,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gelno"]
 radius = 5.28571
-height = 21.1905
+height = 25.7143
 
 [sub_resource type="Animation" id="Animation_sm7b0"]
 length = 0.001
@@ -420,6 +420,8 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hty3n"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mn4ue"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_tkxrb"]
 states/End/position = Vector2(1188.5, 101.739)
 states/Start/position = Vector2(-68, 119.75)
@@ -435,7 +437,7 @@ states/wall_jump/node = SubResource("AnimationNodeAnimation_nw1ca")
 states/wall_jump/position = Vector2(90.804, 432.036)
 states/wall_slide/node = SubResource("AnimationNodeAnimation_pj3le")
 states/wall_slide/position = Vector2(-24.196, 292.536)
-transitions = ["jump", "fall", SubResource("AnimationNodeStateMachineTransition_x01nh"), "Start", "move", SubResource("AnimationNodeStateMachineTransition_6tvdg"), "move", "jump", SubResource("AnimationNodeStateMachineTransition_dyf4a"), "fall", "move", SubResource("AnimationNodeStateMachineTransition_wtdto"), "move", "fall", SubResource("AnimationNodeStateMachineTransition_aba6l"), "move", "attack", SubResource("AnimationNodeStateMachineTransition_ga4ig"), "attack", "move", SubResource("AnimationNodeStateMachineTransition_8pbca"), "fall", "attack", SubResource("AnimationNodeStateMachineTransition_2wl14"), "attack", "fall", SubResource("AnimationNodeStateMachineTransition_h14lu"), "jump", "attack", SubResource("AnimationNodeStateMachineTransition_c45bc"), "attack", "jump", SubResource("AnimationNodeStateMachineTransition_2arbf"), "fall", "jump", SubResource("AnimationNodeStateMachineTransition_x1gmt"), "fall", "wall_slide", SubResource("AnimationNodeStateMachineTransition_26voj"), "wall_slide", "move", SubResource("AnimationNodeStateMachineTransition_b6rrn"), "wall_slide", "fall", SubResource("AnimationNodeStateMachineTransition_xutek"), "wall_slide", "wall_jump", SubResource("AnimationNodeStateMachineTransition_w64gn"), "wall_jump", "fall", SubResource("AnimationNodeStateMachineTransition_hty3n")]
+transitions = ["jump", "fall", SubResource("AnimationNodeStateMachineTransition_x01nh"), "Start", "move", SubResource("AnimationNodeStateMachineTransition_6tvdg"), "move", "jump", SubResource("AnimationNodeStateMachineTransition_dyf4a"), "fall", "move", SubResource("AnimationNodeStateMachineTransition_wtdto"), "move", "fall", SubResource("AnimationNodeStateMachineTransition_aba6l"), "move", "attack", SubResource("AnimationNodeStateMachineTransition_ga4ig"), "attack", "move", SubResource("AnimationNodeStateMachineTransition_8pbca"), "fall", "attack", SubResource("AnimationNodeStateMachineTransition_2wl14"), "attack", "fall", SubResource("AnimationNodeStateMachineTransition_h14lu"), "jump", "attack", SubResource("AnimationNodeStateMachineTransition_c45bc"), "attack", "jump", SubResource("AnimationNodeStateMachineTransition_2arbf"), "fall", "jump", SubResource("AnimationNodeStateMachineTransition_x1gmt"), "fall", "wall_slide", SubResource("AnimationNodeStateMachineTransition_26voj"), "wall_slide", "move", SubResource("AnimationNodeStateMachineTransition_b6rrn"), "wall_slide", "fall", SubResource("AnimationNodeStateMachineTransition_xutek"), "wall_slide", "wall_jump", SubResource("AnimationNodeStateMachineTransition_w64gn"), "wall_jump", "fall", SubResource("AnimationNodeStateMachineTransition_hty3n"), "fall", "wall_jump", SubResource("AnimationNodeStateMachineTransition_mn4ue")]
 graph_offset = Vector2(-232.696, -177.964)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_74r1j"]
@@ -453,6 +455,7 @@ raycast = NodePath("RayCast2D")
 animation_tree = NodePath("AnimationTree")
 
 [node name="Shape" type="CollisionShape2D" parent="."]
+scale = Vector2(1, 1.05)
 shape = SubResource("CapsuleShape2D_gelno")
 
 [node name="MovementComponent" type="Node" parent="."]
@@ -472,7 +475,6 @@ scale = Vector2(1, 1.2)
 shape = SubResource("CapsuleShape2D_gelno")
 
 [node name="StateDebugger" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
-visible = false
 offset_left = -19.0
 offset_top = -58.0
 offset_right = 21.0

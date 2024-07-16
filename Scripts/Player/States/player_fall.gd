@@ -4,7 +4,7 @@ class_name PlayerFall
 func enter() -> void:
 	super()
 	jump_buffer_timer = 0
-	coyote_timer = coyote_time
+	coyote_timer = 2#coyote_time
 	
 	
 func process(delta):
@@ -14,8 +14,11 @@ func process_physics(delta) -> void:
 	
 	if character.movement.wants_jump():
 		jump_buffer_timer = jump_buffer_time
-		if coyote_timer > 0 and previous_state.state_name == "run":
-			transitioned.emit(self, 'jump')
+		if coyote_timer > 0:
+			if previous_state.state_name == "run":
+				transitioned.emit(self, 'jump')
+			if previous_state.state_name == "slide":
+				transitioned.emit(self,'wall_jump')
 			
 	jump_buffer_timer-=delta
 	coyote_timer-=delta

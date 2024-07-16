@@ -1,13 +1,14 @@
 extends PlayerState
 class_name PlayerWallJump
 
-var jump_dir
-
 func enter() -> void:
 	super()
-	character.velocity.x = character.direction * -230
-	character.velocity.y = character.jump_force / 1.5
+	var horizontal_force = -160
+	character.velocity.x = character.direction * horizontal_force if character.raycast.is_colliding() else -character.direction * horizontal_force
+	character.velocity.y = character.jump_force / 1.3
 	
+	if previous_state.state_name == "fall":
+		character.sprite.flip_h = !character.sprite.flip_h
 
 func process_physics(delta):
 	if  character.movement.wants_end_jump():

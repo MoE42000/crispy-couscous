@@ -7,7 +7,7 @@ func enter() -> void:
 	super()
 
 func exit() -> void:
-	character.sprite.offset.x = 0
+	pass
 
 func process_physics(delta) -> void:
 	
@@ -18,11 +18,12 @@ func process_physics(delta) -> void:
 			transitioned.emit(self, "idle")
 			
 	elif !character.raycast.is_colliding() or character.direction == 0:
-		
 		transitioned.emit(self, "fall")
 		
 	elif character.movement.wants_jump():
 		transitioned.emit(self, "wall_jump")
+		
+	coyote_timer -= delta
 	
 	character.velocity.y += wall_slide_gravity * delta
 	character.velocity.y = min(character.velocity.y,wall_slide_gravity)
