@@ -6,8 +6,10 @@
 tile_set = ExtResource("1_0muht")
 format = 2
 layer_0/name = "Background"
-layer_1/name = "Terrain"
-layer_1/z_index = 1
+layer_1/name = "BackgroundDecorations"
 layer_1/tile_data = PackedInt32Array()
-layer_2/name = "Decorations"
+layer_2/name = "Terrain"
+layer_2/z_index = 1
 layer_2/tile_data = PackedInt32Array()
+layer_3/name = "TerrainDecorations"
+layer_3/tile_data = PackedInt32Array()
