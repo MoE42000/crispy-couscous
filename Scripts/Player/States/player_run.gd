@@ -15,7 +15,7 @@ func process(delta):
 			#transitioned.emit(self, 'fall')
 	elif character.movement.wants_attack() and character.is_on_floor():
 		transitioned.emit(self, 'attack')
-	elif character.direction == 0:
+	elif character.direction_input == 0:
 		if character.is_on_floor():
 			transitioned.emit(self, 'idle')
 		else:
@@ -26,7 +26,7 @@ func process(delta):
 func process_physics(delta):
 	
 	character.velocity.y += gravity * delta
-	var movement = character.direction * character.speed
+	var movement = character.direction_input * character.speed
 	character.velocity.x = movement
 	
 	super(delta)

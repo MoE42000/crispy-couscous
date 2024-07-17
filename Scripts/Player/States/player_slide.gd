@@ -1,7 +1,7 @@
 extends PlayerState
 class_name PlayerSlide
 
-@export var wall_slide_gravity : float
+@export var wall_slide_gravity : float = 180
 
 func enter() -> void:
 	super()
@@ -12,12 +12,12 @@ func exit() -> void:
 func process_physics(delta) -> void:
 	
 	if character.is_on_floor():
-		if character.direction != 0:
+		if character.direction_input != 0:
 			transitioned.emit(self, "run")
 		else:
 			transitioned.emit(self, "idle")
 			
-	elif !character.raycast.is_colliding() or character.direction == 0:
+	elif !character.raycast.is_colliding() or character.direction_input == 0:
 		transitioned.emit(self, "fall")
 		
 	elif character.movement.wants_jump():

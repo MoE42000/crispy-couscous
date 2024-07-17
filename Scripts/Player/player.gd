@@ -20,9 +20,11 @@ signal changed_facing_direction(facing_right:bool)
 var drop_through_platform : Area2D
 var on_drop_through_platform : bool
 
-var direction : float
+var direction_input : float
 var speed :float = 120.00
 var jump_force:float = -315.00
+
+var facing_direction : int = 1
 
 func _ready() -> void:
 	health_component.health_depleted.connect(player_died)
@@ -32,8 +34,9 @@ func _ready() -> void:
 	changed_facing_direction.connect(_changed_facing_direction)
 	
 func _physics_process(_delta):
-	direction = movement.get_movement_direction()
-	animation_tree.set("parameters/move/blend_position", direction)
+	direction_input = movement.get_movement_direction()
+	#facing_direction = 1 if !sprite.flip_h else -1
+	animation_tree.set("parameters/move/blend_position", direction_input)
 	
 
 func player_died() -> void:
@@ -48,6 +51,17 @@ func drop_through() -> bool:
 		return true
 	else:
 		return false
+		
+func flip_sprite():
+	sprite.flip_h = !sprite.flip_h
+	facing_direction = -facing_direction
+	changed_facing_direction.emit(facing_direction)
+
+func handle_flipping(direction_input: int):
+	if direction_input != 0:
+		var should_flip = (direction_input > 0 and facing_direction == -1) or (direction_input < 0 and facing_direction == 1)
+		if should_flip:
+			flip_sprite()
 	
 func _on_body_entered(body):
 	if body is DropThroughPlatform:
@@ -58,8 +72,8 @@ func _on_body_exited(body):
 	if body is DropThroughPlatform:
 		on_drop_through_platform = false
 		
-func _changed_facing_direction(facing_right:bool):
-	if facing_right:
+func _changed_facing_direction(dir:int):
+	if dir > 0:
 		raycast.target_position = raycast.facing_right_pos
 		sprite.position = Vector2(8,-14)
 	else:

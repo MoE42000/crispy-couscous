@@ -26,19 +26,19 @@ func process_physics(delta) -> void:
 	if character.is_on_floor():
 		if jump_buffer_timer > 0:
 			transitioned.emit(self, "jump")
-		elif character.direction != 0:
+		elif character.direction_input !=0:
 			transitioned.emit(self, "run")
 		else:
 			transitioned.emit(self, "idle")
 	
-	if character.raycast.is_colliding() and character.direction != 0:
+	if character.raycast.is_colliding() and character.direction_input != 0:
 		transitioned.emit(self, "slide")
 	
 	if character.movement.wants_attack():
 		transitioned.emit(self,'attack')
 			
 	character.velocity.y += gravity * delta
-	var movement =  character.direction * character.speed 
+	var movement =  character.direction_input * character.speed 
 	character.velocity.x = movement
 	
 	super(delta)

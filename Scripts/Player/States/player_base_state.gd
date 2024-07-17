@@ -25,12 +25,13 @@ func process(_delta:float) -> void:
 	pass
 	
 func process_physics(_delta:float) -> void:
-	if !(playback.get_current_node() in ["attack","slide","wall_jump"]):
-		if character.direction < 0:
-			character.sprite.flip_h = true
+	#if !(playback.get_current_node() in ["attack","wall_slide","wall_jump"]):
+		#if character.direction_input < 0:
+			#character.sprite.flip_h = true
 			
-		elif character.direction > 0:
-			character.sprite.flip_h  = false
-			
-	character.changed_facing_direction.emit(!character.sprite.flip_h)
+		#elif character.direction_input > 0:
+			#character.sprite.flip_h  = false
+	if !(playback.get_current_node() in ["attack","wall_slide","wall_jump","fall"]):
+		character.handle_flipping(character.direction_input)
+
 	character.move_and_slide()

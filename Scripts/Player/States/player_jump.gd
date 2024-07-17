@@ -30,7 +30,7 @@ func process_physics(delta):
 	if character.movement.wants_attack():
 		transitioned.emit(self,'attack')
 
-	var movement = character.direction * character.speed 
+	var movement = character.direction_input * character.speed 
 	character.velocity.x = movement
 	
 	if character.velocity.y > 0:

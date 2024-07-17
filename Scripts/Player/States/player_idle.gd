@@ -14,7 +14,7 @@ func process(delta) -> void:
 
 		else:
 			transitioned.emit(self, 'jump')
-	if  character.direction:
+	if  character.direction_input:
 		transitioned.emit(self, 'run')
 	if character.movement.wants_attack():
 		transitioned.emit(self,'attack')

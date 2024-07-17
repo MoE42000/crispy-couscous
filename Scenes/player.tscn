@@ -515,7 +515,6 @@ state_name = "attack"
 
 [node name="Slide" type="Node" parent="StateMachine"]
 script = ExtResource("12_eg4wq")
-wall_slide_gravity = 180.0
 animation_name = "wall_slide"
 state_name = "slide"
 

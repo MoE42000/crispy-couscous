@@ -15,7 +15,7 @@ func exit():
 func process_physics(delta) -> void:
 	super(delta)
 	
-	var movement =  character.direction * character.speed 
+	var movement =  character.direction_input * character.speed 
 	character.velocity.x = movement
 	
 	if character.movement.wants_jump() and character.is_on_floor():
@@ -35,7 +35,7 @@ func attack_finished(animation_finished) -> void:
 		if attack_buffer_timer > 0:
 			transitioned.emit(self,"attack")
 		elif character.is_on_floor():
-			if character.direction != 0:
+			if character.direction_input != 0:
 				transitioned.emit(self, "run")
 			else:
 				transitioned.emit(self, "idle")
