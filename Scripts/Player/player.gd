@@ -27,8 +27,11 @@ var jump_force:float = -315.00
 var facing_direction : int = 1
 
 func _ready() -> void:
+	
+	Global.player = self
+	
 	health_component.health_depleted.connect(player_died)
-	health_component.health_changed.connect(player_hurt)
+	health_component.health_changed.connect(_player_health_changed)
 	hit_box_component.body_entered.connect(_on_body_entered)
 	hit_box_component.body_exited.connect(_on_body_exited)
 	changed_facing_direction.connect(_changed_facing_direction)
@@ -41,7 +44,7 @@ func _physics_process(_delta):
 func player_died() -> void:
 	get_tree().reload_current_scene()
 	
-func player_hurt() -> void:
+func _player_health_changed() -> void:
 	print("hurt")
 	
 func drop_through() -> bool:
@@ -66,7 +69,10 @@ func _on_body_entered(body):
 	if body is DropThroughPlatform:
 		drop_through_platform = body.detection_area
 		on_drop_through_platform = true
-
+	if body is BaseEnemy:
+		pass
+		#print("Ouch i touched an enemy")
+	
 func _on_body_exited(body):
 	if body is DropThroughPlatform:
 		on_drop_through_platform = false

@@ -18,13 +18,10 @@ func process(delta) -> void:
 			transitioned.emit(self, 'fall')
 	elif not character.is_on_floor():
 		transitioned.emit(self, 'fall')
-	
-	elif character.facing_raycast.is_colliding():
-		transitioned.emit(self, 'idle')
 
 func process_physics(delta) -> void:
 	super(delta)
-	character.velocity.y += gravity * delta
+	character.velocity.y += Global.GRAVITY * delta
 	var movement = character.direction_input * character.speed
 	character.velocity.x = movement
 

@@ -23,7 +23,7 @@ func process_physics(delta) -> void:
 	super(delta)
 	if !character.is_on_floor():
 		transitioned.emit(self,"fall")
-	character.velocity.y += gravity * delta
+	character.velocity.y += Global.GRAVITY * delta
 	
 	
 

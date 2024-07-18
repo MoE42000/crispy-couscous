@@ -26,4 +26,4 @@ func process_physics(delta)-> void:
 	if  character.movement.wants_end_jump():
 		character.velocity.y = 0
 	else:
-		character.velocity.y += gravity * delta
+		character.velocity.y += Global.GRAVITY * delta

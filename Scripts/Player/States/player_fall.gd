@@ -4,7 +4,7 @@ class_name PlayerFall
 func enter() -> void:
 	super()
 	jump_buffer_timer = 0
-	coyote_timer = 2#coyote_time
+	coyote_timer = coyote_time
 	
 	
 func process(delta) -> void:
@@ -34,11 +34,10 @@ func process(delta) -> void:
 	
 	if character.movement.wants_attack():
 		transitioned.emit(self,'attack')
-				
-	
+
 	
 func process_physics(delta) -> void:
 	super(delta)
-	character.velocity.y += gravity * delta
+	character.velocity.y += Global.GRAVITY * delta
 	var movement =  character.direction_input * character.speed 
 	character.velocity.x = movement

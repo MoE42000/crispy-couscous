@@ -1,7 +1,6 @@
 class_name PlayerState
 extends State
 
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var animation_name : String
 
 var jump_buffer_time:float = .1

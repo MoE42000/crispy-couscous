@@ -25,7 +25,7 @@ func process_physics(delta) -> void:
 	character.velocity.x = movement
 	
 	if !character.is_on_floor():
-		character.velocity.y += gravity * delta
+		character.velocity.y += Global.GRAVITY * delta
 
 
 func attack_finished(animation_finished) -> void:

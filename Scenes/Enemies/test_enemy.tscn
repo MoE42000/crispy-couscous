@@ -1,0 +1,65 @@
+[gd_scene load_steps=11 format=3 uid="uid://dshkjesdj58q8"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/base_enemy.gd" id="1_qqtly"]
+[ext_resource type="Script" path="res://Scripts/Components/hitbox_component.gd" id="2_bs4b2"]
+[ext_resource type="Texture2D" uid="uid://bqw1j0stnqg48" path="res://assets/enemy_sprites/test_enemy/sample_egg.png" id="2_otelj"]
+[ext_resource type="Script" path="res://Scripts/StateMachine/state_machine.gd" id="3_xiphg"]
+[ext_resource type="Script" path="res://Scripts/Components/health_component.gd" id="4_nf15d"]
+[ext_resource type="Script" path="res://Scripts/Enemies/TestEnemy/test_enemy_idle.gd" id="4_um41t"]
+[ext_resource type="Script" path="res://Scripts/Enemies/TestEnemy/test_enemy_pursuit.gd" id="5_63msq"]
+[ext_resource type="Script" path="res://EnemyHealthLabel.gd" id="6_woxij"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p2ub6"]
+radius = 5.0
+height = 14.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wpybe"]
+radius = 12.0416
+
+[node name="TestEnemy" type="CharacterBody2D" node_paths=PackedStringArray("health_component", "hit_box_component", "sprite", "sm")]
+script = ExtResource("1_qqtly")
+health_component = NodePath("HealthComponent")
+hit_box_component = NodePath("HitBoxComponent")
+sprite = NodePath("Sprite2D")
+sm = NodePath("StateMachine")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -3)
+texture = ExtResource("2_otelj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_p2ub6")
+
+[node name="HitBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+script = ExtResource("2_bs4b2")
+health_component = NodePath("../HealthComponent")
+
+[node name="HitBoxArea" type="CollisionShape2D" parent="HitBoxComponent"]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_wpybe")
+debug_color = Color(0.766889, 0.411149, 0.476297, 0.42)
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "state")]
+script = ExtResource("3_xiphg")
+character = NodePath("..")
+state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("4_um41t")
+state_name = "idle"
+
+[node name="Pursue" type="Node" parent="StateMachine"]
+script = ExtResource("5_63msq")
+state_name = "pursue"
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("4_nf15d")
+health = 50
+
+[node name="Label" type="Label" parent="." node_paths=PackedStringArray("health_component")]
+offset_left = -11.0
+offset_top = -35.0
+offset_right = 12.0
+offset_bottom = -12.0
+script = ExtResource("6_woxij")
+health_component = NodePath("../HealthComponent")

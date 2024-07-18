@@ -21,10 +21,6 @@ func jump() -> void:
 	
 func process(delta) -> void:
 	super(delta)
-	if  character.movement.wants_end_jump():
-		character.velocity.y = 0
-	else:
-		character.velocity.y += gravity * delta
 		
 	if character.movement.wants_attack():
 		transitioned.emit(self,'attack')
@@ -34,6 +30,11 @@ func process(delta) -> void:
 	
 func process_physics(delta) -> void:
 	super(delta)
+	if  character.movement.wants_end_jump():
+		character.velocity.y = 0
+	else:
+		character.velocity.y += Global.GRAVITY * delta
+		
 	var movement = character.direction_input * character.speed 
 	character.velocity.x = movement
 
