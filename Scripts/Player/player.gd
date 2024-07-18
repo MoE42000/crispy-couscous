@@ -11,7 +11,7 @@ var hit_box_component : HitBoxComponent
 @export 
 var sprite : Sprite2D
 @export 
-var raycast: RayCast2D
+var facing_raycast: RayCast2D
 @export 
 var animation_tree : AnimationTree
 
@@ -35,7 +35,6 @@ func _ready() -> void:
 	
 func _physics_process(_delta):
 	direction_input = movement.get_movement_direction()
-	#facing_direction = 1 if !sprite.flip_h else -1
 	animation_tree.set("parameters/move/blend_position", direction_input)
 	
 
@@ -74,8 +73,8 @@ func _on_body_exited(body):
 		
 func _changed_facing_direction(dir:int):
 	if dir > 0:
-		raycast.target_position = raycast.facing_right_pos
+		facing_raycast.target_position = facing_raycast.facing_right_pos
 		sprite.position = Vector2(8,-14)
 	else:
-		raycast.target_position = raycast.facing_left_pos
+		facing_raycast.target_position = facing_raycast.facing_left_pos
 		sprite.position = Vector2(-8,-14)

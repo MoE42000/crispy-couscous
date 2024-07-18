@@ -443,7 +443,7 @@ graph_offset = Vector2(-232.696, -177.964)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_74r1j"]
 size = Vector2(31.75, 22.2857)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement", "health_component", "hit_box_component", "sprite", "raycast", "animation_tree")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement", "health_component", "hit_box_component", "sprite", "facing_raycast", "animation_tree")]
 scale = Vector2(0.7, 0.7)
 collision_layer = 2
 script = ExtResource("1_u7ms0")
@@ -451,7 +451,7 @@ movement = NodePath("MovementComponent")
 health_component = NodePath("HealthComponent")
 hit_box_component = NodePath("HitBoxComponent")
 sprite = NodePath("Sprite2D")
-raycast = NodePath("RayCast2D")
+facing_raycast = NodePath("FacingRaycast")
 animation_tree = NodePath("AnimationTree")
 
 [node name="Shape" type="CollisionShape2D" parent="."]
@@ -554,7 +554,7 @@ script = ExtResource("17_3phmd")
 facing_left_pos = Vector2(-20, 3)
 facing_right_pos = Vector2(20, 3)
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="FacingRaycast" type="RayCast2D" parent="."]
 script = ExtResource("17_3phmd")
 facing_left_pos = Vector2(-13, 0)
 facing_right_pos = Vector2(13, 0)

@@ -19,12 +19,12 @@ func process(delta) -> void:
 	if character.movement.wants_attack():
 		transitioned.emit(self,'attack')
 	
-func process_physics(delta):
-	
+func process_physics(delta) -> void:
+	super(delta)
 	if !character.is_on_floor():
 		transitioned.emit(self,"fall")
 	character.velocity.y += gravity * delta
 	
-	super(delta)
-	#character.move_and_slide()
+	
+
 	

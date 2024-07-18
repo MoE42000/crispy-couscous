@@ -7,17 +7,9 @@ func enter():
 	attack_buffer_timer = 0
 	if !character.animation_tree.animation_finished.is_connected(attack_finished):
 		character.animation_tree.animation_finished.connect(attack_finished)
-
 	
-func exit():
-	pass
-	
-func process_physics(delta) -> void:
+func process(delta) -> void:
 	super(delta)
-	
-	var movement =  character.direction_input * character.speed 
-	character.velocity.x = movement
-	
 	if character.movement.wants_jump() and character.is_on_floor():
 		transitioned.emit(self,"jump")
 	if character.movement.wants_attack():
@@ -25,10 +17,16 @@ func process_physics(delta) -> void:
 		
 	attack_buffer_timer -= delta
 	
+	
+	
+func process_physics(delta) -> void:
+	super(delta)
+	var movement =  character.direction_input * character.speed 
+	character.velocity.x = movement
+	
 	if !character.is_on_floor():
 		character.velocity.y += gravity * delta
-		
-	#character.move_and_slide()
+
 
 func attack_finished(animation_finished) -> void:
 	if (animation_finished == "attack"):

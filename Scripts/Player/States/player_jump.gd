@@ -14,14 +14,13 @@ func enter() -> void:
 		
 	
 	
-func jump():
+func jump() -> void:
 	#TODO: Come up with personalized Jump func
 	character.velocity.y = character.jump_force
 
 	
-	
-	
-func process_physics(delta):
+func process(delta) -> void:
+	super(delta)
 	if  character.movement.wants_end_jump():
 		character.velocity.y = 0
 	else:
@@ -29,14 +28,15 @@ func process_physics(delta):
 		
 	if character.movement.wants_attack():
 		transitioned.emit(self,'attack')
-
-	var movement = character.direction_input * character.speed 
-	character.velocity.x = movement
-	
+		
 	if character.velocity.y > 0:
 		transitioned.emit(self, "fall") 
 	
-
+func process_physics(delta) -> void:
 	super(delta)
-	#character.move_and_slide()
+	var movement = character.direction_input * character.speed 
+	character.velocity.x = movement
+
+	
+
 
