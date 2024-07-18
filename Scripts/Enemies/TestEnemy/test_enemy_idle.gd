@@ -5,8 +5,8 @@ func enter() -> void:
 	
 func process(delta) -> void:
 	# chekc if player is in line of sight
-	if abs(character.position.direction_to(Global.player.position).y) < .2 and character.position.distance_to(Global.player.position) < 60:
-		transitioned.emit(self,"pursue")
+	if abs(character.position.direction_to(Global.player.position).y) < .2 and character.position.distance_to(Global.player.position) < 80:
+		transitioned.emit(self,"alert")
 	
 	
 func process_physics(delta) -> void:

@@ -3,12 +3,7 @@ extends State
 
 @export var animation_name : String
 
-var jump_buffer_time:float = .1
-var coyote_time:float = .05
-var attack_buffer_time:float = .05
-
-var jump_buffer_timer :float
-var coyote_timer :float
+var attack_buffer_time:float = .08
 var attack_buffer_timer: float
 
 func enter() -> void:

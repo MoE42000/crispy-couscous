@@ -2,6 +2,9 @@ extends PlayerState
 class_name PlayerAttack
 
 # Called when the node enters the scene tree for the first time.
+func _ready():
+	character.sword_hit_something.connect(_recoil)
+
 func enter():
 	super()
 	attack_buffer_timer = 0
@@ -16,7 +19,6 @@ func process(delta) -> void:
 		attack_buffer_timer = attack_buffer_time
 		
 	attack_buffer_timer -= delta
-	
 	
 	
 func process_physics(delta) -> void:
@@ -40,3 +42,6 @@ func attack_finished(animation_finished) -> void:
 		else:
 			transitioned.emit(self,"fall")
 			character.sprite.offset.x = 0
+			
+func _recoil():
+	transitioned.emit(self,"recoil")

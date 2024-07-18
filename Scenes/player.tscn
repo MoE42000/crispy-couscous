@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://chsry4aj6ykmv"]
+[gd_scene load_steps=62 format=3 uid="uid://chsry4aj6ykmv"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_u7ms0"]
 [ext_resource type="Script" path="res://Scripts/Player/States/player_run.gd" id="4_a214h"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://Scripts/Player/StateDebugger.gd" id="13_y8sh3"]
 [ext_resource type="Texture2D" uid="uid://ddwrbjwdyolxi" path="res://assets/player_animations/Jump.png" id="14_3u7pu"]
 [ext_resource type="Texture2D" uid="uid://bn5xalsbflbtl" path="res://assets/player_animations/WallSlide.png" id="14_6ylmx"]
+[ext_resource type="Script" path="res://Scripts/Player/States/player_recoil.gd" id="14_oj7js"]
 [ext_resource type="Texture2D" uid="uid://q6a88raox2x4" path="res://assets/player_animations/Attack.png" id="14_smri5"]
 [ext_resource type="Texture2D" uid="uid://d2ci8t7kapus0" path="res://assets/player_animations/Idle.png" id="14_ufohw"]
 [ext_resource type="Script" path="res://Scripts/Player/attack_area.gd" id="16_aaygn"]
@@ -441,7 +442,7 @@ transitions = ["jump", "fall", SubResource("AnimationNodeStateMachineTransition_
 graph_offset = Vector2(-232.696, -177.964)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_74r1j"]
-size = Vector2(31.75, 22.2857)
+size = Vector2(31.75, 21)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement", "health_component", "hit_box_component", "sprite", "facing_raycast", "animation_tree")]
 scale = Vector2(0.7, 0.7)
@@ -475,7 +476,6 @@ scale = Vector2(1, 1.2)
 shape = SubResource("CapsuleShape2D_gelno")
 
 [node name="StateDebugger" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
-visible = false
 offset_left = -19.0
 offset_top = -58.0
 offset_right = 21.0
@@ -524,6 +524,11 @@ script = ExtResource("13_pc6up")
 animation_name = "wall_jump"
 state_name = "wall_jump"
 
+[node name="Recoil" type="Node" parent="StateMachine"]
+script = ExtResource("14_oj7js")
+animation_name = "fall"
+state_name = "recoil"
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(8, -14)
 texture = ExtResource("14_6ylmx")
@@ -549,7 +554,8 @@ character = NodePath("..")
 shape = NodePath("FlipableShape")
 
 [node name="FlipableShape" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(20, 3)
+position = Vector2(20, 2.35715)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_74r1j")
 script = ExtResource("17_3phmd")
 facing_left_pos = Vector2(-20, 3)

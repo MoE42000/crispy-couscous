@@ -16,6 +16,7 @@ var facing_raycast: RayCast2D
 var animation_tree : AnimationTree
 
 signal changed_facing_direction(facing_right:bool)
+signal sword_hit_something
 
 var drop_through_platform : Area2D
 var on_drop_through_platform : bool

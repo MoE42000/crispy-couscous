@@ -23,6 +23,7 @@ func _ready() -> void:
 	
 	
 func on_child_transition(current_state:State, new_state_name:String):
+	#print(current_state.state_name, "-->", new_state_name)
 	var new_state = states[new_state_name]
 	# check that new state isn't the same as current
 	if current_state != state:

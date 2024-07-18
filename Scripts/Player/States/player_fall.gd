@@ -1,6 +1,13 @@
 extends PlayerState
 class_name PlayerFall
 
+var jump_buffer_time:float = .1
+var coyote_time:float = .05
+
+var jump_buffer_timer :float
+var coyote_timer :float
+
+
 func enter() -> void:
 	super()
 	jump_buffer_timer = 0
