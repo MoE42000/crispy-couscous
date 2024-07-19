@@ -19,7 +19,7 @@ func _ready() -> void:
 				child.playback = animation_tree.get("parameters/playback")
 		else:
 			push_warning("Child node" + child.name + " is not a State")
-	state = state
+	state.enter()
 	
 	
 func on_child_transition(current_state:State, new_state_name:String):

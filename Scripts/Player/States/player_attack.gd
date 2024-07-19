@@ -43,4 +43,5 @@ func attack_finished(animation_finished) -> void:
 			character.sprite.offset.x = 0
 			
 func _recoil():
+	await get_tree().create_timer(.05).timeout
 	transitioned.emit(self,"recoil")

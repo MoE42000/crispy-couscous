@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dgfh4l7fu72bd"]
+[gd_scene load_steps=32 format=3 uid="uid://dgfh4l7fu72bd"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/SwingerEnemy/swinger_enemy.gd" id="1_2f5sc"]
 [ext_resource type="Script" path="res://Scripts/Components/health_component.gd" id="2_wq7dp"]
@@ -8,10 +8,10 @@
 [ext_resource type="Script" path="res://Scripts/StateMachine/state_machine.gd" id="4_wmtgw"]
 [ext_resource type="Texture2D" uid="uid://oj7ywa3hv8e3" path="res://assets/player_animations_old/run_sprite_sheet.png" id="5_ayvwn"]
 [ext_resource type="Texture2D" uid="uid://bb4lq5fxqpfl7" path="res://assets/player_animations_old/SpriteAttack.png" id="6_s3snt"]
-[ext_resource type="Script" path="res://Scripts/Enemies/TestEnemy/test_enemy_idle.gd" id="8_jami8"]
-[ext_resource type="Script" path="res://Scripts/Enemies/TestEnemy/test_enemy_pursuit.gd" id="9_qhswa"]
-[ext_resource type="Script" path="res://Scripts/Enemies/TestEnemy/test_enemy_alert.gd" id="10_kb3xv"]
+[ext_resource type="Script" path="res://Scripts/Enemies/SwingerEnemy/swinger_idle.gd" id="9_6yn61"]
+[ext_resource type="Script" path="res://Scripts/Enemies/SwingerEnemy/swinger_attack.gd" id="10_0axcc"]
 [ext_resource type="Script" path="res://Scripts/Enemies/SwingerEnemy/attack_area.gd" id="12_4p5uo"]
+[ext_resource type="Script" path="res://Scripts/Enemies/SwingerEnemy/swinger_wander.gd" id="12_hpqnc"]
 [ext_resource type="Script" path="res://Scripts/Components/filpable_shape_component.gd" id="13_hmqq7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_svgec"]
@@ -169,6 +169,9 @@ _data = {
 "Swing": SubResource("Animation_8ek0m")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_csnjg"]
+animation = &"Swing"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nxdvl"]
 animation = &"Move"
 
@@ -190,10 +193,16 @@ blend_mode = 1
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_y5qlf"]
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sjcmt"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8i46o"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_6xire"]
-states/Move/node = SubResource("AnimationNodeBlendSpace1D_g0njd")
-states/Move/position = Vector2(428, 110)
-transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition_y5qlf")]
+states/attack/node = SubResource("AnimationNodeAnimation_csnjg")
+states/attack/position = Vector2(717, 130.656)
+states/move/node = SubResource("AnimationNodeBlendSpace1D_g0njd")
+states/move/position = Vector2(428, 130)
+transitions = ["Start", "move", SubResource("AnimationNodeStateMachineTransition_y5qlf"), "move", "attack", SubResource("AnimationNodeStateMachineTransition_sjcmt"), "attack", "move", SubResource("AnimationNodeStateMachineTransition_8i46o")]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7q5pl"]
 size = Vector2(38.875, 21.5)
@@ -224,8 +233,7 @@ debug_color = Color(0.837507, 0.339608, 0.48539, 0.42)
 material = SubResource("ShaderMaterial_pmucr")
 position = Vector2(-2, 0)
 scale = Vector2(0.588889, 0.588889)
-texture = ExtResource("6_s3snt")
-hframes = 7
+texture = ExtResource("4_mdjj0")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -235,7 +243,7 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_6xire")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Move/blend_position = 0.00244629
+parameters/move/blend_position = 0.00244629
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "animation_tree", "state")]
 script = ExtResource("4_wmtgw")
@@ -244,18 +252,18 @@ animation_tree = NodePath("../AnimationTree")
 state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine"]
-script = ExtResource("8_jami8")
+script = ExtResource("9_6yn61")
 state_name = "idle"
-animation_name = "move"
+animation_name = "idle"
 
-[node name="Pursue" type="Node" parent="StateMachine"]
-script = ExtResource("9_qhswa")
-state_name = "pursue"
-animation_name = "move"
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("10_0axcc")
+state_name = "attack"
+animation_name = "attack"
 
-[node name="Alert" type="Node" parent="StateMachine"]
-script = ExtResource("10_kb3xv")
-state_name = "alert"
+[node name="Wander" type="Node" parent="StateMachine"]
+script = ExtResource("12_hpqnc")
+state_name = "wander"
 animation_name = "move"
 
 [node name="AttackArea" type="Area2D" parent="." node_paths=PackedStringArray("character", "shape")]
