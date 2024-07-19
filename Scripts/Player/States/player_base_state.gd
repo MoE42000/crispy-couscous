@@ -1,8 +1,6 @@
 class_name PlayerState
 extends State
 
-@export var animation_name : String
-
 var attack_buffer_time:float = .08
 var attack_buffer_timer: float
 

@@ -5,6 +5,9 @@ signal transitioned
 
 @export
 var state_name : String
+@export 
+var animation_name : String
+
 var character : CharacterBody2D
 var playback : AnimationNodeStateMachinePlayback
 

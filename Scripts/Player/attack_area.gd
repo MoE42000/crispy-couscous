@@ -1,9 +1,11 @@
 extends AreaEffectComponent
+class_name PlayerSwordArea
 
 @export var sword_damage : int = 10
 
 func _on_body_entered(body):
-	if !(body is Player):
+	#if !(body is Player):
+	if body != get_parent():
 		Global.player.sword_hit_something.emit()
 		for child in body.get_children():
 			

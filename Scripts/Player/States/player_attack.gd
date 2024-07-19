@@ -1,12 +1,11 @@
 extends PlayerState
 class_name PlayerAttack
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	character.sword_hit_something.connect(_recoil)
 
 func enter():
 	super()
+	if !character.sword_hit_something.is_connected(_recoil):
+		character.sword_hit_something.connect(_recoil)
 	attack_buffer_timer = 0
 	if !character.animation_tree.animation_finished.is_connected(attack_finished):
 		character.animation_tree.animation_finished.connect(attack_finished)

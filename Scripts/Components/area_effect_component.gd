@@ -16,5 +16,5 @@ func _on_body_entered(_body):
 func _on_area_entered(_area):
 	pass
 	
-func _changed_facing_direction(facing_dir:float):
+func _changed_facing_direction(_facing_dir:float):
 	pass

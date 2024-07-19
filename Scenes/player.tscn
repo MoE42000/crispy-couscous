@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://chsry4aj6ykmv"]
+[gd_scene load_steps=64 format=3 uid="uid://chsry4aj6ykmv"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_u7ms0"]
 [ext_resource type="Script" path="res://Scripts/Player/States/player_run.gd" id="4_a214h"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" path="res://Scripts/Player/States/player_recoil.gd" id="14_oj7js"]
 [ext_resource type="Texture2D" uid="uid://q6a88raox2x4" path="res://assets/player_animations/Attack.png" id="14_smri5"]
 [ext_resource type="Texture2D" uid="uid://d2ci8t7kapus0" path="res://assets/player_animations/Idle.png" id="14_ufohw"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/flash.gdshader" id="15_1uwph"]
 [ext_resource type="Script" path="res://Scripts/Player/attack_area.gd" id="16_aaygn"]
 [ext_resource type="Script" path="res://Scripts/Components/filpable_shape_component.gd" id="17_3phmd"]
 [ext_resource type="Texture2D" uid="uid://8fbeqe2lqtev" path="res://assets/player_animations/Run.png" id="18_gk3bs"]
@@ -26,6 +27,12 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gelno"]
 radius = 5.28571
 height = 25.7143
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_27xec"]
+shader = ExtResource("15_1uwph")
+shader_parameter/base_color = Color(1, 1, 1, 1)
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/flashState = 0.0
 
 [sub_resource type="Animation" id="Animation_sm7b0"]
 length = 0.001
@@ -447,6 +454,7 @@ size = Vector2(31.75, 21)
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement", "health_component", "hit_box_component", "sprite", "facing_raycast", "animation_tree")]
 scale = Vector2(0.7, 0.7)
 collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_u7ms0")
 movement = NodePath("MovementComponent")
 health_component = NodePath("HealthComponent")
@@ -464,7 +472,7 @@ script = ExtResource("8_gd1hq")
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("11_gcpp5")
-health = 10
+health = 50
 
 [node name="HitBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
 script = ExtResource("12_5y34a")
@@ -491,48 +499,50 @@ state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("4_kbnd3")
-animation_name = "move"
 state_name = "idle"
+animation_name = "move"
 
 [node name="Run" type="Node" parent="StateMachine"]
 script = ExtResource("4_a214h")
-animation_name = "move"
 state_name = "run"
+animation_name = "move"
 
 [node name="Jump" type="Node" parent="StateMachine"]
 script = ExtResource("5_ylfsl")
-animation_name = "jump"
 state_name = "jump"
+animation_name = "jump"
 
 [node name="Fall" type="Node" parent="StateMachine"]
 script = ExtResource("6_0iqux")
-animation_name = "fall"
 state_name = "fall"
+animation_name = "fall"
 
 [node name="Attack" type="Node" parent="StateMachine"]
 script = ExtResource("11_7lnmu")
-animation_name = "attack"
 state_name = "attack"
+animation_name = "attack"
 
 [node name="Slide" type="Node" parent="StateMachine"]
 script = ExtResource("12_eg4wq")
-animation_name = "wall_slide"
 state_name = "slide"
+animation_name = "wall_slide"
 
 [node name="WallJump" type="Node" parent="StateMachine"]
 script = ExtResource("13_pc6up")
-animation_name = "wall_jump"
 state_name = "wall_jump"
+animation_name = "wall_jump"
 
 [node name="Recoil" type="Node" parent="StateMachine"]
 script = ExtResource("14_oj7js")
-animation_name = "fall"
 state_name = "recoil"
+animation_name = "fall"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_27xec")
 position = Vector2(8, -14)
-texture = ExtResource("14_6ylmx")
-hframes = 8
+texture = ExtResource("14_ufohw")
+hframes = 6
+frame = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -555,7 +565,6 @@ shape = NodePath("FlipableShape")
 
 [node name="FlipableShape" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(20, 2.35715)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_74r1j")
 script = ExtResource("17_3phmd")
 facing_left_pos = Vector2(-20, 3)
@@ -563,5 +572,5 @@ facing_right_pos = Vector2(20, 3)
 
 [node name="FacingRaycast" type="RayCast2D" parent="."]
 script = ExtResource("17_3phmd")
-facing_left_pos = Vector2(-13, 0)
-facing_right_pos = Vector2(13, 0)
+facing_left_pos = Vector2(-6, 0)
+facing_right_pos = Vector2(7, 0)
