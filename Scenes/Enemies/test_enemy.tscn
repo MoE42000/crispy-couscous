@@ -72,7 +72,6 @@ state_name = "alert"
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("4_nf15d")
-health = 50
 
 [node name="Label" type="Label" parent="." node_paths=PackedStringArray("health_component")]
 offset_left = -11.0

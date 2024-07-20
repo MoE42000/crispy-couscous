@@ -18,7 +18,6 @@ func process(delta) -> void:
 	super(delta)
 	if character.movement.wants_jump():
 		if character.can_double_jump and !(previous_state.state_name in ["double_jump", "wall_jump"]): # check if can double jump
-			print( previous_state.state_name)
 			transitioned.emit(self,"double_jump")
 		else: 																# otherwise create jump buffer
 			jump_buffer_timer = jump_buffer_time

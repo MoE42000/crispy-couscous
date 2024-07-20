@@ -41,7 +41,7 @@ func _on_body_entered(body):
 	if body is Player:
 		body.health_component.damage(enemy_strength)
 
-func _on_body_exited(body):
+func _on_body_exited(_body):
 	pass
 
 func recoil():

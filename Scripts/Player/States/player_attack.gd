@@ -12,8 +12,12 @@ func enter():
 	
 func process(delta) -> void:
 	super(delta)
-	if character.movement.wants_jump() and character.is_on_floor():
-		transitioned.emit(self,"jump")
+	if character.movement.wants_jump():
+		if character.is_on_floor():
+			transitioned.emit(self,"jump")
+		elif character.can_double_jump and !(previous_state.state_name in ["double_jump", "wall_jump"]): # check if can double jump
+			transitioned.emit(self,"double_jump")
+		
 	if character.movement.wants_attack():
 		attack_buffer_timer = attack_buffer_time
 		

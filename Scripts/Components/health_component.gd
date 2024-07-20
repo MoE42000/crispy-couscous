@@ -5,7 +5,7 @@ extends Node
 signal health_changed
 signal health_depleted
 
-@export var health : int = 1:
+@export var health : float = 1:
 	set(value):# set allows to call something whenever the value has been changed
 		health = value
 		health_changed.emit()

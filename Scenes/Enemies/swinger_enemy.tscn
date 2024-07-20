@@ -196,12 +196,13 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sjcmt"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8i46o"]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_6xire"]
 states/attack/node = SubResource("AnimationNodeAnimation_csnjg")
-states/attack/position = Vector2(717, 130.656)
+states/attack/position = Vector2(719, 141.156)
 states/move/node = SubResource("AnimationNodeBlendSpace1D_g0njd")
-states/move/position = Vector2(428, 130)
+states/move/position = Vector2(470, 153)
 transitions = ["Start", "move", SubResource("AnimationNodeStateMachineTransition_y5qlf"), "move", "attack", SubResource("AnimationNodeStateMachineTransition_sjcmt"), "attack", "move", SubResource("AnimationNodeStateMachineTransition_8i46o")]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7q5pl"]
