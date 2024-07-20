@@ -17,7 +17,11 @@ func enter() -> void:
 func process(delta) -> void:
 	super(delta)
 	if character.movement.wants_jump():
-		jump_buffer_timer = jump_buffer_time
+		if character.can_double_jump and !(previous_state.state_name in ["double_jump", "wall_jump"]): # check if can double jump
+			print( previous_state.state_name)
+			transitioned.emit(self,"double_jump")
+		else: 																# otherwise create jump buffer
+			jump_buffer_timer = jump_buffer_time
 		if coyote_timer > 0:
 			if previous_state.state_name == "run":
 				transitioned.emit(self, 'jump')

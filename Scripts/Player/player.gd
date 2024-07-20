@@ -21,9 +21,10 @@ signal sword_hit_something
 var drop_through_platform : Area2D
 var on_drop_through_platform : bool
 
+var can_double_jump :bool = true
+
 var direction_input : float
 var speed :float = 120.00
-var jump_force:float = -315.00
 
 var facing_direction : int = 1
 

@@ -1,7 +1,7 @@
 extends PlayerState
 class_name PlayerJump
 
-@export var wall_jump_pushback : float
+@export var jump_force:float = 315.00
 
 func enter() -> void:
 	super()
@@ -16,7 +16,7 @@ func enter() -> void:
 	
 func jump() -> void:
 	#TODO: Come up with personalized Jump func
-	character.velocity.y = character.jump_force
+	character.velocity.y = -jump_force
 
 	
 func process(delta) -> void:
