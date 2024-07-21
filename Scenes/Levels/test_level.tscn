@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dsxcke5aj3opc"]
 
-[ext_resource type="PackedScene" uid="uid://dshkjesdj58q8" path="res://Scenes/Enemies/test_enemy.tscn" id="1_a04xb"]
+[ext_resource type="PackedScene" uid="uid://dshkjesdj58q8" path="res://Scenes/Enemies/sprinter_enemy.tscn" id="1_a04xb"]
 [ext_resource type="PackedScene" uid="uid://33hqhc547bqr" path="res://Scenes/tile_map.tscn" id="1_wrimt"]
 [ext_resource type="PackedScene" uid="uid://chsry4aj6ykmv" path="res://Scenes/player.tscn" id="2_wfu5e"]
 [ext_resource type="PackedScene" uid="uid://c0bsurryjspll" path="res://Scenes/Decorations/lamp_light.tscn" id="3_whkbw"]

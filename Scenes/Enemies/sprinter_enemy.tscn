@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dshkjesdj58q8"]
+[gd_scene load_steps=15 format=3 uid="uid://dshkjesdj58q8"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/base_enemy.gd" id="1_qqtly"]
 [ext_resource type="Script" path="res://Scripts/Components/hitbox_component.gd" id="2_bs4b2"]
@@ -6,10 +6,11 @@
 [ext_resource type="Shader" path="res://Scripts/Shaders/flash.gdshader" id="2_u1hfl"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/state_machine.gd" id="3_xiphg"]
 [ext_resource type="Script" path="res://Scripts/Components/health_component.gd" id="4_nf15d"]
-[ext_resource type="Script" path="res://Scripts/Enemies/TestEnemy/test_enemy_idle.gd" id="4_um41t"]
-[ext_resource type="Script" path="res://Scripts/Enemies/TestEnemy/test_enemy_pursuit.gd" id="5_63msq"]
-[ext_resource type="Script" path="res://EnemyHealthLabel.gd" id="6_woxij"]
-[ext_resource type="Script" path="res://Scripts/Enemies/TestEnemy/test_enemy_alert.gd" id="7_nui7n"]
+[ext_resource type="Script" path="res://Scripts/Enemies/SprinterEnemy/sprinter_enemy_idle.gd" id="4_um41t"]
+[ext_resource type="Script" path="res://Scripts/Enemies/SprinterEnemy/sprinter_enemy_pursuit.gd" id="5_63msq"]
+[ext_resource type="Script" path="res://Scripts/Enemies/SprinterEnemy/sprinter_enemy_alert.gd" id="7_nui7n"]
+[ext_resource type="Script" path="res://Debugging/EnemyHealthLabel.gd" id="10_4erft"]
+[ext_resource type="Script" path="res://Debugging/state_label.gd" id="11_hxmmh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cay1c"]
 shader = ExtResource("2_u1hfl")
@@ -24,7 +25,7 @@ height = 10.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_wpybe"]
 radius = 7.07107
 
-[node name="TestEnemy" type="CharacterBody2D" node_paths=PackedStringArray("health_component", "hit_box_component", "sprite", "sm")]
+[node name="SprinterEnemy" type="CharacterBody2D" node_paths=PackedStringArray("health_component", "hit_box_component", "sprite", "sm")]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_qqtly")
@@ -74,10 +75,18 @@ state_name = "alert"
 script = ExtResource("4_nf15d")
 health = 30.0
 
-[node name="Label" type="Label" parent="." node_paths=PackedStringArray("health_component")]
+[node name="HealthLabel" type="Label" parent="." node_paths=PackedStringArray("health_component")]
 offset_left = -11.0
 offset_top = -35.0
 offset_right = 12.0
 offset_bottom = -12.0
-script = ExtResource("6_woxij")
+script = ExtResource("10_4erft")
 health_component = NodePath("../HealthComponent")
+
+[node name="StateLabel" type="Label" parent="." node_paths=PackedStringArray("sm")]
+offset_left = -20.0
+offset_top = -34.0
+offset_right = 20.0
+offset_bottom = -11.0
+script = ExtResource("11_hxmmh")
+sm = NodePath("../StateMachine")

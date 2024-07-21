@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dgfh4l7fu72bd"]
+[gd_scene load_steps=33 format=3 uid="uid://dgfh4l7fu72bd"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/SwingerEnemy/swinger_enemy.gd" id="1_2f5sc"]
 [ext_resource type="Script" path="res://Scripts/Components/health_component.gd" id="2_wq7dp"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://Scripts/Enemies/SwingerEnemy/attack_area.gd" id="12_4p5uo"]
 [ext_resource type="Script" path="res://Scripts/Enemies/SwingerEnemy/swinger_wander.gd" id="12_hpqnc"]
 [ext_resource type="Script" path="res://Scripts/Components/filpable_shape_component.gd" id="13_hmqq7"]
+[ext_resource type="Script" path="res://Debugging/state_label.gd" id="14_bf7yi"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_svgec"]
 
@@ -280,3 +281,11 @@ shape = SubResource("RectangleShape2D_7q5pl")
 script = ExtResource("13_hmqq7")
 facing_left_pos = Vector2(-20, -10)
 facing_right_pos = Vector2(20, -10)
+
+[node name="StateLabel" type="Label" parent="." node_paths=PackedStringArray("sm")]
+offset_left = -20.0
+offset_top = -43.0
+offset_right = 20.0
+offset_bottom = -20.0
+script = ExtResource("14_bf7yi")
+sm = NodePath("../StateMachine")

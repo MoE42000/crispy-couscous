@@ -1,10 +1,12 @@
-[gd_scene load_steps=65 format=3 uid="uid://chsry4aj6ykmv"]
+[gd_scene load_steps=66 format=3 uid="uid://chsry4aj6ykmv"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_u7ms0"]
 [ext_resource type="Script" path="res://Scripts/Player/States/player_run.gd" id="4_a214h"]
 [ext_resource type="Script" path="res://Scripts/Player/States/player_idle.gd" id="4_kbnd3"]
+[ext_resource type="Script" path="res://Debugging/state_label.gd" id="5_t1uc1"]
 [ext_resource type="Script" path="res://Scripts/Player/States/player_jump.gd" id="5_ylfsl"]
 [ext_resource type="Script" path="res://Scripts/Player/States/player_fall.gd" id="6_0iqux"]
+[ext_resource type="Script" path="res://Debugging/ability_label.gd" id="6_s61kd"]
 [ext_resource type="Script" path="res://Scripts/Player/player_move_component.gd" id="8_gd1hq"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/state_machine.gd" id="9_c2gyw"]
 [ext_resource type="Script" path="res://Scripts/Player/States/player_attack.gd" id="11_7lnmu"]
@@ -12,7 +14,6 @@
 [ext_resource type="Script" path="res://Scripts/Player/player_hitbox_component.gd" id="12_5y34a"]
 [ext_resource type="Script" path="res://Scripts/Player/States/player_slide.gd" id="12_eg4wq"]
 [ext_resource type="Script" path="res://Scripts/Player/States/player_wall_jump.gd" id="13_pc6up"]
-[ext_resource type="Script" path="res://Scripts/Player/StateDebugger.gd" id="13_y8sh3"]
 [ext_resource type="Texture2D" uid="uid://ddwrbjwdyolxi" path="res://assets/player_animations/Jump.png" id="14_3u7pu"]
 [ext_resource type="Texture2D" uid="uid://bn5xalsbflbtl" path="res://assets/player_animations/WallSlide.png" id="14_6ylmx"]
 [ext_resource type="Script" path="res://Scripts/Player/States/player_recoil.gd" id="14_oj7js"]
@@ -484,13 +485,20 @@ position = Vector2(-1, 3)
 scale = Vector2(1, 1.2)
 shape = SubResource("CapsuleShape2D_gelno")
 
-[node name="StateDebugger" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
+[node name="StateDebugger" type="Label" parent="." node_paths=PackedStringArray("sm")]
 offset_left = -19.0
 offset_top = -58.0
 offset_right = 21.0
 offset_bottom = -35.0
-script = ExtResource("13_y8sh3")
-state_machine = NodePath("../StateMachine")
+script = ExtResource("5_t1uc1")
+sm = NodePath("../StateMachine")
+
+[node name="AbilityDebugger" type="Label" parent="."]
+offset_left = -15.7143
+offset_top = -35.7143
+offset_right = 24.2857
+offset_bottom = -12.7143
+script = ExtResource("6_s61kd")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "animation_tree", "state")]
 script = ExtResource("9_c2gyw")
