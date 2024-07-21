@@ -1,8 +1,8 @@
 extends PlayerState
 class_name PlayerWallJump
 
-@export var horizontal_force:int = 160
-@export var vertical_force = 175
+@export var horizontal_force:int = 170
+@export var vertical_force = 180
 
 func enter() -> void:
 	super()

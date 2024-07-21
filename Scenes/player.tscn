@@ -20,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://d2ci8t7kapus0" path="res://assets/player_animations/Idle.png" id="14_ufohw"]
 [ext_resource type="Script" path="res://Scripts/Player/States/double_jump.gd" id="15_0k2pf"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/flash.gdshader" id="15_1uwph"]
-[ext_resource type="Script" path="res://Scripts/Player/attack_area.gd" id="16_aaygn"]
+[ext_resource type="Script" path="res://Scripts/Player/States/attack_area.gd" id="16_aaygn"]
 [ext_resource type="Script" path="res://Scripts/Components/filpable_shape_component.gd" id="17_3phmd"]
 [ext_resource type="Texture2D" uid="uid://8fbeqe2lqtev" path="res://assets/player_animations/Run.png" id="18_gk3bs"]
 [ext_resource type="Texture2D" uid="uid://im70mjux6omc" path="res://assets/player_animations/WallJump.png" id="19_aa0k7"]
@@ -473,6 +473,7 @@ script = ExtResource("8_gd1hq")
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("11_gcpp5")
+health = 100.0
 
 [node name="HitBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
 script = ExtResource("12_5y34a")
@@ -529,6 +530,8 @@ animation_name = "wall_slide"
 
 [node name="WallJump" type="Node" parent="StateMachine"]
 script = ExtResource("13_pc6up")
+horizontal_force = 200
+vertical_force = 200
 state_name = "wall_jump"
 animation_name = "wall_jump"
 

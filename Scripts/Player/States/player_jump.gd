@@ -35,7 +35,7 @@ func process_physics(delta) -> void:
 	else:
 		character.velocity.y += Global.GRAVITY * delta
 		
-	var movement = character.direction_input * character.speed 
+	var movement = character.direction_input * (character.speed + character.sprint_speed)
 	character.velocity.x = movement
 
 	

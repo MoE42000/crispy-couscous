@@ -16,7 +16,7 @@ func flip_sprite():
 	facing_direction = -facing_direction
 	changed_facing_direction.emit(facing_direction)
 
-func handle_flipping(direction_input: int):
+func handle_flipping(direction_input: float):
 	if direction_input != 0:
 		var should_flip = (direction_input > 0 and facing_direction == -1) or (direction_input < 0 and facing_direction == 1)
 		if should_flip:

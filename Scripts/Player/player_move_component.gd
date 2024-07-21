@@ -16,5 +16,6 @@ func wants_end_jump() -> bool:
 func wants_attack() -> bool:
 	return Input.is_action_just_pressed('Attack')
 	
-func wants_dash() -> bool:
-	return false
+func wants_ability() -> bool:
+	return Input.is_action_just_pressed('Ability')
+

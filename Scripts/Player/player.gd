@@ -24,7 +24,13 @@ var on_drop_through_platform : bool
 var can_double_jump :bool = true
 
 var direction_input : float
+@export
 var speed :float = 120.00
+@export 
+var sprint_speed_val : float = 80
+var sprint_speed : float = 0
+
+var current_ability : String = "double_jump"#"sprint"
 
 var facing_direction : int = 1
 
@@ -94,3 +100,4 @@ func _changed_facing_direction(dir:int):
 	else:
 		facing_raycast.target_position = facing_raycast.facing_left_pos
 		sprite.position = Vector2(-8,-14)
+	sprint_speed = 0 # stop sprint

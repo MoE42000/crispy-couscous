@@ -7,6 +7,7 @@ class_name PlayerDoubleJump
 func enter() -> void:
 	super()
 	character.velocity.y = -double_jump_force
+	character.can_double_jump = false
 
 	
 func process(delta) -> void:
@@ -25,7 +26,7 @@ func process_physics(delta) -> void:
 	else:
 		character.velocity.y += Global.GRAVITY * delta
 		
-	var movement = character.direction_input * character.speed 
+	var movement = character.direction_input * (character.speed + character.sprint_speed)
 	character.velocity.x = movement
 
 	

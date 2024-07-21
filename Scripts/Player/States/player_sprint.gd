@@ -1,11 +1,10 @@
 extends PlayerState
-class_name PlayerRun
+class_name PlayerSprint
 
-@export var acceleration :float = 15
+@export var speed_increase : float = 1.5
 
 func enter() -> void:
 	super()
-	character.can_double_jump = true
 
 func process(delta) -> void:
 	super(delta)
@@ -25,6 +24,6 @@ func process(delta) -> void:
 func process_physics(delta) -> void:
 	super(delta)
 	character.velocity.y += Global.GRAVITY * delta
-	var movement = Vector2(character.direction_input * (character.speed + character.sprint_speed), character.velocity.y)
-	character.velocity = character.velocity.move_toward( movement , acceleration)
-	
+	var movement = character.direction_input * character.speed * speed_increase
+	character.velocity.x = movement
+

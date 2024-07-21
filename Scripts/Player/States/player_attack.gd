@@ -26,7 +26,7 @@ func process(delta) -> void:
 	
 func process_physics(delta) -> void:
 	super(delta)
-	var movement =  character.direction_input * character.speed 
+	var movement =  character.direction_input * (character.speed + character.sprint_speed)
 	character.velocity.x = movement
 	
 	if !character.is_on_floor():
