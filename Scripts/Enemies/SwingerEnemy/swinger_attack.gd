@@ -2,6 +2,8 @@ extends State
 
 func enter() -> void:
 	change_animation()
+	character.handle_flipping(character.position.direction_to(Global.player.position).x )
+		
 	character.velocity = Vector2(0,0) # stands still
 	var animation_tree = get_parent().animation_tree
 	if !animation_tree.animation_finished.is_connected(attack_finished):
@@ -9,4 +11,4 @@ func enter() -> void:
 
 
 func attack_finished(_animation):
-	transitioned.emit("idle")
+	transitioned.emit(self,"idle")

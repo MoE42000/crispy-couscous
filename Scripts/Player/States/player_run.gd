@@ -5,7 +5,7 @@ class_name PlayerRun
 
 func enter() -> void:
 	super()
-	character.can_double_jump = true
+	#character.can_double_jump = true
 
 func process(delta) -> void:
 	super(delta)

@@ -34,7 +34,7 @@ func process_physics(delta) -> void:
 
 
 func attack_finished(animation_finished) -> void:
-	if (animation_finished == "attack"):
+	if (animation_finished == animation_name):
 		if attack_buffer_timer > 0:
 			transitioned.emit(self,"attack")
 		elif character.is_on_floor():

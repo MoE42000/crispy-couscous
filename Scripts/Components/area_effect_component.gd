@@ -2,7 +2,7 @@ extends Area2D
 class_name AreaEffectComponent
 
 @export var character : CharacterBody2D
-@export var shape : FlipableShape
+@export var shapes : Array[FlipableShape]
 
 func _ready():
 	monitoring = false
