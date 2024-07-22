@@ -13,6 +13,8 @@ var sprite : Sprite2D
 @export 
 var facing_raycast: RayCast2D
 @export 
+var feet_raycast: RayCast2D
+@export 
 var animation_tree : AnimationTree
 
 signal changed_facing_direction(facing_right:bool)

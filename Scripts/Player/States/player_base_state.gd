@@ -5,6 +5,8 @@ var attack_buffer_time:float = .08
 var attack_buffer_timer: float
 
 func enter() -> void:
+	#if previous_state:
+		#print(previous_state.state_name, " -> ", state_name)
 	change_animation(animation_name)
 
 func exit() -> void:
