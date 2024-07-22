@@ -1,4 +1,5 @@
 extends BaseEnemy
+class_name SwingerEnemy
 
 @export
 var animation_tree : AnimationTree
@@ -8,7 +9,6 @@ var facing_direction :int = 1
 signal changed_facing_direction
 
 func _process(_delta) -> void:
-	animation_tree.set("parameters/move/blend_position", self.velocity.x)
 	handle_flipping(velocity.x)
 	
 func flip_sprite():

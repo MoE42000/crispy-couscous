@@ -5,6 +5,7 @@ var moving_right: bool
 var walk_speed = 50
 
 func enter() -> void:
+	change_animation()
 	set_random_wander()
 
 func set_random_wander() -> void:
@@ -14,7 +15,7 @@ func set_random_wander() -> void:
 	moving_right = randf() < 0.5
 	
 func process(_delta):
-	if abs(character.position.direction_to(Global.player.position).y) < .2 and character.position.distance_to(Global.player.position) < 80:
+	if abs(character.position.direction_to(Global.player.position).y) < .2 and character.position.distance_to(Global.player.position) < 35:
 		transitioned.emit(self,"attack")
 
 func process_physics(delta) -> void:

@@ -21,7 +21,7 @@ signal sword_hit_something
 var drop_through_platform : Area2D
 var on_drop_through_platform : bool
 
-var can_double_jump :bool = true
+var can_double_jump :bool = false
 
 var direction_input : float
 @export
@@ -30,7 +30,7 @@ var speed :float = 120.00
 var sprint_speed_val : float = 80
 var sprint_speed : float = 0
 
-var current_ability : String = "double_jump"#"sprint"
+var current_ability : String
 
 var facing_direction : int = 1
 

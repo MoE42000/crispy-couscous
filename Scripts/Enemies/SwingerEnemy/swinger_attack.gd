@@ -1,11 +1,11 @@
 extends State
 
 func enter() -> void:
-	print("attack")
-	playback.travel("attack")
+	change_animation()
 	character.velocity = Vector2(0,0) # stands still
-	if !character.animation_tree.animation_finished.is_connected(attack_finished):
-		character.animation_tree.animation_finished.connect(attack_finished)
+	var animation_tree = get_parent().animation_tree
+	if !animation_tree.animation_finished.is_connected(attack_finished):
+		animation_tree.animation_finished.connect(attack_finished)
 
 
 func attack_finished(_animation):

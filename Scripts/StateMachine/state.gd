@@ -26,3 +26,9 @@ func process_physics(_delta:float) -> void:
 	pass
 	
 
+func change_animation():
+	if playback.get_current_node() != animation_name:
+		playback.travel(animation_name)
+	else:
+		playback.start(animation_name)
+	

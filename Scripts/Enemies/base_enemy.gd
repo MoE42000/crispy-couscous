@@ -10,7 +10,7 @@ var sprite : Sprite2D
 @export 
 var sm : StateMachine
 
-
+@export var ability : String
 
 @export 
 var enemy_strength : float = 5
@@ -32,6 +32,7 @@ func sprite_flash(color:Color,duration=.2,loops=1) -> void:
 	flash_tween.tween_method(set_flash_state, 1,0,duration/2)
 
 func _enemy_died():
+	Global.player.current_ability = ability
 	queue_free()
 	
 func _enemy_health_changed():

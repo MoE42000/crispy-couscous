@@ -4,6 +4,7 @@ extends PlayerState
 var recoil_force := 80
 
 func enter():
+	super()
 	character.velocity.y = -40
 	character.velocity.x = -recoil_force * character.facing_direction
 

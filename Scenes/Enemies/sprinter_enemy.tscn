@@ -33,6 +33,7 @@ health_component = NodePath("HealthComponent")
 hit_box_component = NodePath("HitBoxComponent")
 sprite = NodePath("Sprite2D")
 sm = NodePath("StateMachine")
+ability = "sprint"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_cay1c")

@@ -5,10 +5,7 @@ var attack_buffer_time:float = .08
 var attack_buffer_timer: float
 
 func enter() -> void:
-	if playback.get_current_node() != animation_name:
-		playback.travel(animation_name)
-	else:
-		playback.start(animation_name)
+	change_animation()
 
 func exit() -> void:
 	pass

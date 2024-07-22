@@ -11,7 +11,7 @@ func _ready() -> void:
 	if animation_tree:
 		animation_tree.active = true
 	for child in get_children():
-		if (child is State):
+		if child is State:
 			child.character = character
 			states[child.state_name] = child 
 			child.transitioned.connect(on_child_transition)
