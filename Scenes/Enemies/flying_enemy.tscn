@@ -1,0 +1,43 @@
+[gd_scene load_steps=9 format=3 uid="uid://ccdxqjtx41enu"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/base_enemy.gd" id="1_4h682"]
+[ext_resource type="Script" path="res://Scripts/Components/hitbox_component.gd" id="2_5ampc"]
+[ext_resource type="Script" path="res://Scripts/Components/health_component.gd" id="3_gcmv8"]
+[ext_resource type="Script" path="res://Scripts/StateMachine/state_machine.gd" id="4_u66ke"]
+[ext_resource type="Script" path="res://Scripts/Enemies/FlyingEnemy/flying_enemy_idle.gd" id="5_vp5s7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xg0ew"]
+radius = 45.0111
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2pf4t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rhd4i"]
+radius = 26.1725
+
+[node name="BaseEnemy" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_4h682")
+
+[node name="HitBoxComponent" type="Area2D" parent="."]
+script = ExtResource("2_5ampc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+shape = SubResource("CircleShape2D_xg0ew")
+debug_color = Color(0.705918, 0.424062, 0.642567, 0.42)
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("3_gcmv8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -4.76837e-07)
+scale = Vector2(96.875, 63.7187)
+texture = SubResource("PlaceholderTexture2D_2pf4t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rhd4i")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("4_u66ke")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("5_vp5s7")

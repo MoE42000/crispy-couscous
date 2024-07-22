@@ -223,7 +223,7 @@ health_component = NodePath("HealthComponent")
 hit_box_component = NodePath("HitBoxComponent")
 sprite = NodePath("Sprite2D")
 sm = NodePath("StateMachine")
-ability = "double_jump"
+ability = "up_attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_svgec")

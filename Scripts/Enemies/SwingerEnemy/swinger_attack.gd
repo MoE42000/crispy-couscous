@@ -1,8 +1,8 @@
 extends State
 
 func enter() -> void:
-	change_animation()
-	character.handle_flipping(character.position.direction_to(Global.player.position).x )
+	change_animation(animation_name)
+	character.handle_flipping(character.position.direction_to(Global.player.position).x)
 		
 	character.velocity = Vector2(0,0) # stands still
 	var animation_tree = get_parent().animation_tree

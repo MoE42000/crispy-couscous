@@ -5,7 +5,7 @@ var attack_buffer_time:float = .08
 var attack_buffer_timer: float
 
 func enter() -> void:
-	change_animation()
+	change_animation(animation_name)
 
 func exit() -> void:
 	pass
@@ -29,5 +29,5 @@ func process_physics(_delta:float) -> void:
 					transitioned.emit(self,"up_attack")
 			_:
 				pass
-		character.current_ability = "up_attack"
+		character.current_ability = ""
 	character.move_and_slide()

@@ -9,6 +9,8 @@ func enter() -> void:
 
 func process(delta) -> void:
 	super(delta)
+	if character.sprint_speed > 0:
+		playback.travel("sprint")
 	if character.movement.wants_jump() and character.is_on_floor():
 		transitioned.emit(self,"jump")
 

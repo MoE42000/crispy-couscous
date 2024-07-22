@@ -53,7 +53,8 @@ func player_died() -> void:
 	get_tree().reload_current_scene()
 	
 func _player_health_changed() -> void:
-	sprite_flash(Color(1,1,1,.5))
+	sprite_flash(Color(1,1,1,.5),.9,3)
+	hit_box_component.turn_invincible()
 	
 func drop_through() -> bool:
 	if drop_through_platform and on_drop_through_platform:
@@ -73,13 +74,13 @@ func handle_flipping(dir_input: int):
 		if should_flip:
 			flip_sprite()
 			
-func sprite_flash(color:Color,duration=.2,loops=1) -> void:
+func sprite_flash(color:Color,duration:=.2,loops:=1) -> void:
 	var set_flash_state = func(v): sprite.material.set_shader_parameter("flashState", v)
 	sprite.material.set_shader_parameter("color", color)
 	var flash_tween = create_tween()
 	flash_tween.set_loops(loops)
-	flash_tween.tween_method(set_flash_state, 0,1,duration/2)
-	flash_tween.tween_method(set_flash_state, 1,0,duration/2)
+	flash_tween.tween_method(set_flash_state, 0,1,duration/(2*loops))
+	flash_tween.tween_method(set_flash_state, 1,0,duration/(2*loops))
 	
 func _on_body_entered(body):
 	if body is DropThroughPlatform:

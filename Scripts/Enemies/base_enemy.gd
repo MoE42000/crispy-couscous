@@ -14,6 +14,10 @@ var sm : StateMachine
 
 @export 
 var enemy_strength : float = 5
+@export
+var facing_direction :int = 1
+
+signal changed_facing_direction
 
 func _ready():
 	
@@ -22,6 +26,22 @@ func _ready():
 	hit_box_component.body_entered.connect(_on_body_entered)
 	hit_box_component.body_exited.connect(_on_body_exited)
 	hit_box_component.set_collision_layer(3)
+	
+	
+
+func _process(_delta) -> void:
+	handle_flipping(velocity.x)
+	
+func flip_sprite():
+	sprite.flip_h = !sprite.flip_h
+	facing_direction = -facing_direction
+	changed_facing_direction.emit(facing_direction)
+
+func handle_flipping(direction_input: float):
+	if direction_input != 0:
+		var should_flip = (direction_input > 0 and facing_direction == -1) or (direction_input < 0 and facing_direction == 1)
+		if should_flip:
+			flip_sprite()
 	
 func sprite_flash(color:Color,duration=.2,loops=1) -> void:
 	var set_flash_state = func(v): sprite.material.set_shader_parameter("flashState", v)
