@@ -31,7 +31,7 @@
 [ext_resource type="Script" path="res://Debugging/EnemyHealthLabel.gd" id="26_ct88g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hrfle"]
-size = Vector2(11.4286, 27.449)
+size = Vector2(11.4286, 21.8878)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gelno"]
 radius = 5.28571
@@ -625,6 +625,7 @@ feet_raycast = NodePath("FeetRaycast")
 animation_tree = NodePath("AnimationTree")
 
 [node name="Shape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2.91965)
 scale = Vector2(1, 1.05)
 shape = SubResource("RectangleShape2D_hrfle")
 
@@ -678,7 +679,6 @@ animation_name = "attack"
 
 [node name="Slide" type="Node" parent="StateMachine"]
 script = ExtResource("12_eg4wq")
-fall_delay = 0.07
 state_name = "slide"
 animation_name = "wall_slide"
 

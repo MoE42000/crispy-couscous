@@ -3,17 +3,22 @@ class_name PlayerSlide
 
 @export var wall_slide_gravity : float = 180
 @export var fall_delay:float=.05
-var fall_timer:Timer = Timer.new()
+var fall_timer:Timer
 var sliding : bool
 var facing_dir : int
 
-func enter() -> void:
-	super() 
-	sliding = true
+func _ready():
+	fall_timer = Timer.new()
 	add_child(fall_timer)
 	fall_timer.one_shot = true
 	fall_timer.timeout.connect(_on_fall_timer_timeout)
 	fall_timer.wait_time = fall_delay
+
+func enter() -> void:
+	super() 
+	facing_dir = character.direction_input
+	sliding = true
+	
 
 func exit():
 	super()
@@ -30,8 +35,9 @@ func process(delta) -> void:
 	elif !character.facing_raycast.is_colliding():
 		transitioned.emit(self, "fall")
 		
-	elif character.direction_input == 0:
-		fall_timer.start()
+	elif character.direction_input != facing_dir:
+		if fall_timer.is_stopped():
+			fall_timer.start()
 
 		
 	if character.movement.wants_jump():
