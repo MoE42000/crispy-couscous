@@ -2,7 +2,7 @@ extends PlayerState
 class_name PlayerDoubleJump
 
 
-@export var double_jump_force : float = 200
+@export var double_jump_force : float = 300
 
 func enter() -> void:
 	super()
@@ -21,10 +21,10 @@ func process(delta) -> void:
 	
 func process_physics(delta) -> void:
 	super(delta)
-	if  character.movement.wants_end_jump():
-		character.velocity.y = 0
-	else:
-		character.velocity.y += Global.GRAVITY * delta
+	#if  #character.movement.wants_end_jump():
+		#character.velocity.y = 0
+	#else:
+	character.velocity.y += Global.GRAVITY * delta
 		
 	var movement = character.direction_input * (character.speed + character.sprint_speed)
 	character.velocity.x = movement

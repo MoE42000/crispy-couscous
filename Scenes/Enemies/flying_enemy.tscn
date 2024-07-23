@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://ccdxqjtx41enu"]
+[gd_scene load_steps=10 format=3 uid="uid://ccdxqjtx41enu"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/base_enemy.gd" id="1_4h682"]
 [ext_resource type="Script" path="res://Scripts/Components/hitbox_component.gd" id="2_5ampc"]
 [ext_resource type="Script" path="res://Scripts/Components/health_component.gd" id="3_gcmv8"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/state_machine.gd" id="4_u66ke"]
 [ext_resource type="Script" path="res://Scripts/Enemies/FlyingEnemy/flying_enemy_idle.gd" id="5_vp5s7"]
+[ext_resource type="Script" path="res://Debugging/EnemyHealthLabel.gd" id="6_75cvi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xg0ew"]
 radius = 45.0111
@@ -12,32 +13,51 @@ radius = 45.0111
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2pf4t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rhd4i"]
-radius = 26.1725
+radius = 16.1245
 
-[node name="BaseEnemy" type="CharacterBody2D"]
+[node name="BaseEnemy" type="CharacterBody2D" node_paths=PackedStringArray("health_component", "hit_box_component", "sprite", "sm")]
 collision_layer = 4
+collision_mask = 3
 script = ExtResource("1_4h682")
+health_component = NodePath("HealthComponent")
+hit_box_component = NodePath("HitBoxComponent")
+sprite = NodePath("Sprite2D")
+sm = NodePath("StateMachine")
+ability = "double_jump"
 
 [node name="HitBoxComponent" type="Area2D" parent="."]
+scale = Vector2(0.5, 0.5)
 script = ExtResource("2_5ampc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+scale = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_xg0ew")
 debug_color = Color(0.705918, 0.424062, 0.642567, 0.42)
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("3_gcmv8")
+health = 10.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -4.76837e-07)
-scale = Vector2(96.875, 63.7187)
+scale = Vector2(20.2188, 20.9297)
 texture = SubResource("PlaceholderTexture2D_2pf4t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_rhd4i")
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "state")]
 script = ExtResource("4_u66ke")
+character = NodePath("..")
+state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("5_vp5s7")
+
+[node name="HealthLabel" type="Label" parent="." node_paths=PackedStringArray("health_component")]
+offset_left = -18.0
+offset_top = -31.0
+offset_right = 23.0
+offset_bottom = -8.0
+script = ExtResource("6_75cvi")
+health_component = NodePath("../HealthComponent")
