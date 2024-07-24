@@ -1,33 +1,41 @@
-[gd_scene load_steps=10 format=3 uid="uid://ccdxqjtx41enu"]
+[gd_scene load_steps=12 format=3 uid="uid://ccdxqjtx41enu"]
 
-[ext_resource type="Script" path="res://Scripts/Enemies/base_enemy.gd" id="1_4h682"]
+[ext_resource type="Script" path="res://Scripts/Enemies/FlyingEnemy/flying_enemy.gd" id="1_2jwr1"]
 [ext_resource type="Script" path="res://Scripts/Components/hitbox_component.gd" id="2_5ampc"]
 [ext_resource type="Script" path="res://Scripts/Components/health_component.gd" id="3_gcmv8"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/state_machine.gd" id="4_u66ke"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/flash.gdshader" id="4_v17mm"]
 [ext_resource type="Script" path="res://Scripts/Enemies/FlyingEnemy/flying_enemy_idle.gd" id="5_vp5s7"]
 [ext_resource type="Script" path="res://Debugging/EnemyHealthLabel.gd" id="6_75cvi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xg0ew"]
 radius = 45.0111
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ow0yc"]
+shader = ExtResource("4_v17mm")
+shader_parameter/base_color = Color(1, 1, 1, 1)
+shader_parameter/color = null
+shader_parameter/flashState = 0.0
+
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2pf4t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rhd4i"]
 radius = 16.1245
 
-[node name="BaseEnemy" type="CharacterBody2D" node_paths=PackedStringArray("health_component", "hit_box_component", "sprite", "sm")]
+[node name="FlyingEnemy" type="CharacterBody2D" node_paths=PackedStringArray("health_component", "hit_box_component", "sprite", "sm")]
 collision_layer = 4
 collision_mask = 3
-script = ExtResource("1_4h682")
+script = ExtResource("1_2jwr1")
 health_component = NodePath("HealthComponent")
 hit_box_component = NodePath("HitBoxComponent")
 sprite = NodePath("Sprite2D")
 sm = NodePath("StateMachine")
 ability = "double_jump"
 
-[node name="HitBoxComponent" type="Area2D" parent="."]
+[node name="HitBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("2_5ampc")
+health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
 scale = Vector2(0.5, 0.5)
@@ -39,6 +47,7 @@ script = ExtResource("3_gcmv8")
 health = 10.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ow0yc")
 scale = Vector2(20.2188, 20.9297)
 texture = SubResource("PlaceholderTexture2D_2pf4t")
 
@@ -53,6 +62,7 @@ state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("5_vp5s7")
+state_name = "idle"
 
 [node name="HealthLabel" type="Label" parent="." node_paths=PackedStringArray("health_component")]
 offset_left = -18.0

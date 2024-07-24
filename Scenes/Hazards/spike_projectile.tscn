@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3hk45n76j8gg"]
+
+[ext_resource type="Script" path="res://Scripts/Environment/Hazards/spike_projectile.gd" id="1_yfjwp"]
+[ext_resource type="Texture2D" uid="uid://bjy2he6cj2wy8" path="res://assets/tileset/hazards/ShootingwallSprite-0017.png" id="2_2htfy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bxuof"]
+size = Vector2(11.5, 7)
+
+[node name="SpikeProjectile" type="Area2D"]
+collision_mask = 3
+script = ExtResource("1_yfjwp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4.75, 0.5)
+shape = SubResource("RectangleShape2D_bxuof")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-5, 0)
+texture = ExtResource("2_2htfy")
+region_enabled = true
+region_rect = Rect2(713.31, 34.1861, 14.7917, 9.72939)
