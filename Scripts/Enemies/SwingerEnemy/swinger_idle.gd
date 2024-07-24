@@ -3,7 +3,7 @@ extends State
 func enter() -> void:
 	change_animation(animation_name)
 	character.velocity = Vector2(0,0) # stands still
-	await get_tree().create_timer(randf_range(.2,3)).timeout
+	await get_tree().create_timer(randf_range(.2,2)).timeout
 	transitioned.emit(self,"wander")
 		
 func process(_delta) -> void:

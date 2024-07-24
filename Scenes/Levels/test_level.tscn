@@ -16,7 +16,7 @@ layer_2/tile_data = PackedInt32Array(196595, 917504, 10, 262131, 720896, 10, 196
 layer_3/tile_data = PackedInt32Array(-65524, 2, 0, 15, 2, 1, -131063, 2, 2, 7, 2, 3, 10, 2, 4)
 
 [node name="Player" parent="." instance=ExtResource("2_wfu5e")]
-position = Vector2(142, 24)
+position = Vector2(-11, -13)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -46)
@@ -39,7 +39,7 @@ editor_draw_limits = true
 position = Vector2(331, 23)
 
 [node name="SwingerEnemy" parent="Enemies" instance=ExtResource("5_mb5l4")]
-position = Vector2(-128, -22)
+position = Vector2(-203, -50)
 
 [node name="CharacterBody2D" parent="Enemies" instance=ExtResource("5_rqhqd")]
 position = Vector2(-39, 354)

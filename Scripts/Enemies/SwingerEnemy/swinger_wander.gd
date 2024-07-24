@@ -11,12 +11,20 @@ func enter() -> void:
 func set_random_wander() -> void:
 	# Set a random distance to wander
 	wander_distance = randf_range(10, 50)
-	# Randomly decide to move left or right
-	moving_right = randf() < 0.5
+	# Check whether he should avoid edge otherwise randomly decide to move left or right
+	if !character.edge_checking_raycast.is_colliding():
+		if character.facing_direction < 0:
+			moving_right = true
+		else:
+			moving_right = false
+	else:
+		moving_right = randf() < 0.5
 	
 func process(_delta):
 	if abs(character.position.direction_to(Global.player.position).y) < .2 and character.position.distance_to(Global.player.position) < 35:
 		transitioned.emit(self,"attack")
+	if !character.edge_checking_raycast.is_colliding():
+		transitioned.emit(self,"idle")
 
 func process_physics(delta) -> void:
 	if wander_distance > 0:

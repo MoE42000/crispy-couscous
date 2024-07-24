@@ -307,3 +307,9 @@ offset_right = 19.0
 offset_bottom = -28.0
 script = ExtResource("15_01wsi")
 health_component = NodePath("../HealthComponent")
+
+[node name="EdgeChecker" type="RayCast2D" parent="."]
+target_position = Vector2(18, 21)
+script = ExtResource("13_hmqq7")
+facing_left_pos = Vector2(-18, 21)
+facing_right_pos = Vector2(18, 21)
