@@ -218,6 +218,7 @@ states/move/position = Vector2(612, 107)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ted3b"), "idle", "move", SubResource("AnimationNodeStateMachineTransition_auiug"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_u8c5h"), "attack", "move", SubResource("AnimationNodeStateMachineTransition_xwa5k"), "move", "idle", SubResource("AnimationNodeStateMachineTransition_br6f3"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_80e0s"), "move", "attack", SubResource("AnimationNodeStateMachineTransition_l3fci")]
 
 [node name="SwingerEnemy" type="CharacterBody2D" node_paths=PackedStringArray("health_component", "hit_box_component", "sprite", "sm")]
+collision_layer = 4
 script = ExtResource("1_2f5sc")
 health_component = NodePath("HealthComponent")
 hit_box_component = NodePath("HitBoxComponent")

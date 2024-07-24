@@ -1,32 +1,50 @@
-[gd_scene load_steps=5 format=3 uid="uid://bapmgr0b6xx20"]
+[gd_scene load_steps=6 format=3 uid="uid://bapmgr0b6xx20"]
 
 [ext_resource type="Texture2D" uid="uid://bjy2he6cj2wy8" path="res://assets/tileset/hazards/ShootingwallSprite-0017.png" id="1_flwyb"]
 [ext_resource type="Script" path="res://Scripts/Environment/Hazards/spike_projectile_shooter.gd" id="2_ykpjl"]
 
-[sub_resource type="Animation" id="Animation_0ewct"]
+[sub_resource type="Animation" id="Animation_57d01"]
 resource_name = "shoot"
+length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture")
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_ydwkm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_flwyb")]
+"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eiwmc"]
 _data = {
-"shoot": SubResource("Animation_0ewct")
+"RESET": SubResource("Animation_ydwkm"),
+"shoot": SubResource("Animation_57d01")
 }
 
 [node name="Sprite2D" type="Sprite2D"]
 texture = ExtResource("1_flwyb")
+hframes = 8
 region_enabled = true
-region_rect = Rect2(759.263, 33.6193, 6.08093, 12.0266)
+region_rect = Rect2(-0.322695, 31.0497, 800.97, 17.8224)
 script = ExtResource("2_ykpjl")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
