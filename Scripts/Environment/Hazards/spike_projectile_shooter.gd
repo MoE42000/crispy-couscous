@@ -11,7 +11,8 @@ var start_shooting_offset : float = 0
 @export
 var projectile_speed : float = 200
 
-
+@export 
+var enabled : bool = true 
 
 @onready 
 var animation_player := $AnimationPlayer
@@ -23,8 +24,9 @@ func _ready():
 	timer.wait_time = shoot_rate
 	add_child(timer)
 	await get_tree().create_timer(start_shooting_offset).timeout
-	shoot()
-	timer.start()
+	if enabled:
+		shoot()
+		timer.start()
 	
 	
 

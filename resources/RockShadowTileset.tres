@@ -1417,7 +1417,6 @@ texture = ExtResource("3_nne3t")
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_5e0uf"]
 resource_name = "Hazards"
 scenes/1/scene = ExtResource("4_jxqgs")
-scenes/1/display_placeholder = ExtResource("4_jxqgs")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_p4gm8"]
 resource_name = "Functionality Tiles"

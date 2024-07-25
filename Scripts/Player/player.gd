@@ -8,6 +8,8 @@ var movement : MovementComponent
 var health_component : HealthComponent
 @export 
 var hit_box_component : HitBoxComponent
+@export
+var feet_area : Area2D
 @export 
 var sprite : Sprite2D
 @export 
@@ -44,6 +46,8 @@ func _ready() -> void:
 	health_component.health_changed.connect(_player_health_changed)
 	hit_box_component.body_entered.connect(_on_body_entered)
 	hit_box_component.body_exited.connect(_on_body_exited)
+	feet_area.body_entered.connect(_on_feet_area_body_entered)
+	feet_area.body_exited.connect(_on_feet_area_body_exited)
 	changed_facing_direction.connect(_changed_facing_direction)
 	
 func _physics_process(_delta):
@@ -59,10 +63,13 @@ func _player_health_changed() -> void:
 	hit_box_component.turn_invincible()
 	
 func drop_through() -> bool:
+	print("Attempting drop through:", drop_through_platform, on_drop_through_platform)
 	if drop_through_platform and on_drop_through_platform:
 		drop_through_platform.set_deferred("monitoring", true)
+		print("Drop through successful")
 		return true
 	else:
+		print("Drop through failed")
 		return false
 		
 func flip_sprite():
@@ -84,16 +91,23 @@ func sprite_flash(color:Color,duration:=.2,loops:=1) -> void:
 	flash_tween.tween_method(set_flash_state, 0,1,duration/(2*loops))
 	flash_tween.tween_method(set_flash_state, 1,0,duration/(2*loops))
 	
-func _on_body_entered(body):
+func _on_feet_area_body_entered(body):
 	if body is DropThroughPlatform:
 		drop_through_platform = body.detection_area
 		on_drop_through_platform = true
+
+func _on_feet_area_body_exited(body):
+	if body is DropThroughPlatform:
+		pass
+		#await get_tree().create_timer(.5).timeout
+		#on_drop_through_platform = false
+	
+func _on_body_entered(body):
 	if body is BaseEnemy:
 		health_component.damage(body.damage)
 	
 func _on_body_exited(body):
-	if body is DropThroughPlatform:
-		on_drop_through_platform = false
+	pass
 		
 func _changed_facing_direction(dir:int):
 	if dir > 0:
