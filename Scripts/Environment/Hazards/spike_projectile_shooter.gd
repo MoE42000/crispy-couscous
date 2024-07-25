@@ -23,11 +23,15 @@ func _ready():
 	timer.wait_time = shoot_rate
 	add_child(timer)
 	await get_tree().create_timer(start_shooting_offset).timeout
+	shoot()
 	timer.start()
 	
 	
 
 func shoot():
+	animation_player.play("shoot")
+	await get_tree().create_timer(.5).timeout
+	
 	var instance = projectile.instantiate()
 	instance.dir = rotation
 	instance.spawn_pos = Vector2(global_position.x, global_position.y)
@@ -37,6 +41,5 @@ func shoot():
 	add_child(instance)
 
 func _on_timer_timeout():
-	animation_player.play("shoot")
-	await get_tree().create_timer(.5).timeout
+	
 	shoot()

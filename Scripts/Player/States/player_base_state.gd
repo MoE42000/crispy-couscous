@@ -19,6 +19,9 @@ func process_physics(_delta:float) -> void:
 	if !(playback.get_current_node() in ["attack","up_attack","wall_slide","wall_jump"]):
 		character.handle_flipping(character.direction_input)
 	
+	if !character.is_on_floor() and character.movement.wants_jump() and character.current_ability == "double_jump":
+		transitioned.emit(self,"double_jump")
+		
 	if character.movement.wants_ability():
 		
 		match character.current_ability:

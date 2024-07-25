@@ -89,8 +89,7 @@ func _on_body_entered(body):
 		drop_through_platform = body.detection_area
 		on_drop_through_platform = true
 	if body is BaseEnemy:
-		pass
-		#print("Ouch i touched an enemy")
+		health_component.damage(body.damage)
 	
 func _on_body_exited(body):
 	if body is DropThroughPlatform:

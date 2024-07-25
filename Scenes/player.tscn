@@ -633,7 +633,7 @@ script = ExtResource("8_gd1hq")
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("11_gcpp5")
-health = 100.0
+health = 1000.0
 
 [node name="HitBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("collision_shape", "health_component")]
 script = ExtResource("12_5y34a")
@@ -754,10 +754,10 @@ facing_right_pos = Vector2(7, 0)
 target_position = Vector2(0, 20)
 
 [node name="StateDebugger" type="Label" parent="." node_paths=PackedStringArray("sm")]
-offset_left = 17.1429
-offset_top = -37.1429
-offset_right = 57.1429
-offset_bottom = -14.1429
+offset_left = 11.4286
+offset_top = -10.0
+offset_right = 51.4286
+offset_bottom = 13.0
 script = ExtResource("5_t1uc1")
 sm = NodePath("../StateMachine")
 

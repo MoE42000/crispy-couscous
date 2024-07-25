@@ -1,8 +1,10 @@
-[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://bitcdqbm4mdw7"]
+[gd_resource type="TileSet" load_steps=11 format=3 uid="uid://bitcdqbm4mdw7"]
 
 [ext_resource type="Texture2D" uid="uid://bysjy5yhqohtu" path="res://assets/tileset/terrain/FinalTerrain.png" id="1_cdr5h"]
 [ext_resource type="Texture2D" uid="uid://d26niujm37hll" path="res://assets/tileset/decorations/BackgroundDecorations.png" id="2_7o7kd"]
 [ext_resource type="Texture2D" uid="uid://bqw7tx8xba0jj" path="res://assets/tileset/decorations/animated_tiles/fireflies/fireflies.png" id="3_nne3t"]
+[ext_resource type="PackedScene" uid="uid://bapmgr0b6xx20" path="res://Scenes/Hazards/wall_spike_shooter.tscn" id="4_jxqgs"]
+[ext_resource type="PackedScene" uid="uid://buwmwcyc10g48" path="res://drop_through_platform.tscn" id="5_m4ygk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p4lw4"]
 texture = ExtResource("1_cdr5h")
@@ -1412,6 +1414,15 @@ texture = ExtResource("3_nne3t")
 0:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:4/0/physics_layer_0/angular_velocity = 0.0
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_5e0uf"]
+resource_name = "Hazards"
+scenes/1/scene = ExtResource("4_jxqgs")
+scenes/1/display_placeholder = ExtResource("4_jxqgs")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_p4gm8"]
+resource_name = "Functionality Tiles"
+scenes/1/scene = ExtResource("5_m4ygk")
+
 [resource]
 physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 0
@@ -1423,3 +1434,5 @@ terrain_set_0/terrain_1/color = Color(0.439283, 0.268045, 0.954879, 1)
 sources/0 = SubResource("TileSetAtlasSource_p4lw4")
 sources/1 = SubResource("TileSetAtlasSource_axrmh")
 sources/2 = SubResource("TileSetAtlasSource_gf1t6")
+sources/3 = SubResource("TileSetScenesCollectionSource_5e0uf")
+sources/4 = SubResource("TileSetScenesCollectionSource_p4gm8")

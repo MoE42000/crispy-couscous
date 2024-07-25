@@ -3,17 +3,19 @@
 [ext_resource type="Script" path="res://Scripts/Environment/drop_through_platform.gd" id="1_172tw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d03he"]
-size = Vector2(30, 3)
+size = Vector2(16, 3)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yvded"]
-size = Vector2(32, 2.5)
+size = Vector2(16, 3)
 
 [node name="StaticBody2D" type="StaticBody2D" node_paths=PackedStringArray("detection_area")]
+position = Vector2(0, -6)
 collision_mask = 6
 script = ExtResource("1_172tw")
 detection_area = NodePath("DetectionArea")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_d03he")
 one_way_collision = true
 
@@ -21,6 +23,6 @@ one_way_collision = true
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2(0, -2.75)
+position = Vector2(0, -3.5)
 shape = SubResource("RectangleShape2D_yvded")
 debug_color = Color(0.255117, 0.542019, 0.877221, 0.42)
