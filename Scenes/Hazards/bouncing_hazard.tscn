@@ -11,14 +11,7 @@ radius = 8.0
 [node name="BouncingHazard" type="CharacterBody2D"]
 collision_layer = 4
 script = ExtResource("1_qwst7")
-movement_type = 1
-INCREASE_TYPE = {
-"Linear": 0,
-"Multiplicative": 1
-}
-speed_change = 0.0
-max_speed = 1000.0
-change_on_bounce = true
+direction_change_type = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_6ppjo")
