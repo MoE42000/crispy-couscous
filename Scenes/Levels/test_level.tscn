@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dsxcke5aj3opc"]
+[gd_scene load_steps=7 format=3 uid="uid://dsxcke5aj3opc"]
 
 [ext_resource type="PackedScene" uid="uid://dshkjesdj58q8" path="res://Scenes/Enemies/sprinter_enemy.tscn" id="1_a04xb"]
 [ext_resource type="PackedScene" uid="uid://33hqhc547bqr" path="res://Scenes/tile_map.tscn" id="1_wrimt"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://dgfh4l7fu72bd" path="res://Scenes/Enemies/swinger_enemy.tscn" id="5_mb5l4"]
 [ext_resource type="PackedScene" uid="uid://ccdxqjtx41enu" path="res://Scenes/Enemies/flying_enemy.tscn" id="5_rqhqd"]
 [ext_resource type="PackedScene" uid="uid://bapmgr0b6xx20" path="res://Scenes/Hazards/wall_spike_shooter.tscn" id="6_chreu"]
-[ext_resource type="PackedScene" uid="uid://c3w6n2xqh4ok5" path="res://Scenes/Hazards/bouncing_hazard.tscn" id="7_oev32"]
 
 [node name="TestLevel" type="Node2D"]
 
@@ -19,7 +18,7 @@ layer_4/name = "Functionality"
 layer_4/tile_data = PackedInt32Array(327684, 4, 65536, 1769484, 4, 65536, 1769485, 4, 65536, 1769486, 4, 65536, 1769487, 4, 65536, 1769488, 4, 65536, 1769489, 4, 65536, 1769490, 4, 65536, 1769491, 4, 65536, 1638412, 4, 65536, 1638413, 4, 65536, 1638414, 4, 65536, 1638415, 4, 65536, 1638416, 4, 65536, 1638417, 4, 65536, 1638418, 4, 65536, 1638419, 4, 65536, 1507340, 4, 65536, 1507341, 4, 65536, 1507342, 4, 65536, 1507343, 4, 65536, 1507344, 4, 65536, 1507345, 4, 65536, 1507346, 4, 65536, 1507347, 4, 65536, 1376268, 4, 65536, 1376269, 4, 65536, 1376270, 4, 65536, 1376271, 4, 65536, 1376272, 4, 65536, 1376273, 4, 65536, 1376274, 4, 65536, 1376275, 4, 65536, 1245196, 4, 65536, 1245197, 4, 65536, 1245198, 4, 65536, 1245199, 4, 65536, 1245200, 4, 65536, 1245201, 4, 65536, 1245202, 4, 65536, 1245203, 4, 65536, 1114124, 4, 65536, 1114125, 4, 65536, 1114126, 4, 65536, 1114127, 4, 65536, 1114128, 4, 65536, 1114129, 4, 65536, 1114130, 4, 65536, 1114131, 4, 65536, 1769470, 4, 65536, 1769471, 4, 65536, 1769468, 4, 65536, 1769469, 4, 65536, 1703936, 4, 65536, 1703937, 4, 65536, 1507324, 4, 65536, 1310720, 4, 65536, 1245182, 4, 65536)
 
 [node name="Player" parent="." instance=ExtResource("2_wfu5e")]
-position = Vector2(-62, 108)
+position = Vector2(-75, -19)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -46)
@@ -143,11 +142,3 @@ projectile_speed = 150.0
 position = Vector2(338, 325.5)
 shoot_rate = 2.0
 projectile_speed = 150.0
-
-[node name="BouncingHazard" parent="Hazards" instance=ExtResource("7_oev32")]
-position = Vector2(-23, 86)
-initial_dir = Vector2(0, 1)
-speed_change_type = 4
-speed_range = Vector2(20, 200)
-change_on_bounce = false
-change_time_rate = 1.5
