@@ -15,7 +15,7 @@ var sm : StateMachine
 @export 
 var enemy_strength : float = 5
 @export
-var facing_direction :int = 1
+var facing_direction :int = -1
 
 signal changed_facing_direction
 
@@ -35,6 +35,10 @@ func _process(_delta) -> void:
 func flip_sprite():
 	sprite.flip_h = !sprite.flip_h
 	facing_direction = -facing_direction
+	if facing_direction > 0:
+		sprite.offset.x = -15
+	else:
+		sprite.offset.x = 0
 	changed_facing_direction.emit(facing_direction)
 
 func handle_flipping(direction_input: float):

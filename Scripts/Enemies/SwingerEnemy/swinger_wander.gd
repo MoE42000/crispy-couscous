@@ -2,7 +2,8 @@ extends State
 
 var wander_distance: float
 var moving_right: bool
-var walk_speed = 50
+@export 
+var walk_speed = 20
 
 func enter() -> void:
 	change_animation(animation_name)

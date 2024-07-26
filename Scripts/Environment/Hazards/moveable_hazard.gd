@@ -202,6 +202,7 @@ func _physics_process(delta: float) -> void:
 	if collision_info:
 		if change_on_bounce:
 			update_speed()
+		print("deberia bounce")
 		velocity = velocity.bounce(collision_info.get_normal())
 
 

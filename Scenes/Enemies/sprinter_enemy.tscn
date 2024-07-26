@@ -5,7 +5,7 @@
 [ext_resource type="Shader" path="res://Scripts/Shaders/flash.gdshader" id="2_u1hfl"]
 [ext_resource type="Texture2D" uid="uid://doptw7v520x33" path="res://assets/enemy_sprites/sprinter_enemy/SprinterHatching.png" id="3_6hyx4"]
 [ext_resource type="Texture2D" uid="uid://d0krhrxqhysng" path="res://assets/enemy_sprites/sprinter_enemy/SprinterRunning.png" id="3_13j8t"]
-[ext_resource type="Texture2D" uid="uid://b14grn47av7at" path="res://assets/enemy_sprites/sprinter_enemy/SpritnerAttackMoving.png" id="3_svyvr"]
+[ext_resource type="Texture2D" uid="uid://b14grn47av7at" path="res://assets/enemy_sprites/sprinter_enemy/SprinterAttackMoving.png" id="3_svyvr"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/state_machine.gd" id="3_xiphg"]
 [ext_resource type="Script" path="res://Scripts/Components/health_component.gd" id="4_nf15d"]
 [ext_resource type="Script" path="res://Scripts/Enemies/SprinterEnemy/sprinter_enemy_idle.gd" id="4_um41t"]
@@ -261,14 +261,13 @@ hit_box_component = NodePath("HitBoxComponent")
 sprite = NodePath("Sprite2D")
 sm = NodePath("StateMachine")
 ability = "sprint"
-facing_direction = -1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_cay1c")
 position = Vector2(4, -7)
 scale = Vector2(0.53125, 0.5625)
-texture = ExtResource("3_6hyx4")
-hframes = 7
+texture = ExtResource("3_svyvr")
+hframes = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
