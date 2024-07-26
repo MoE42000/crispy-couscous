@@ -617,7 +617,6 @@ size = Vector2(11.4286, 4.28571)
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement", "health_component", "hit_box_component", "feet_area", "sprite", "facing_raycast", "feet_raycast", "animation_tree")]
 scale = Vector2(0.7, 0.7)
 collision_layer = 2
-collision_mask = 9
 script = ExtResource("1_u7ms0")
 movement = NodePath("MovementComponent")
 health_component = NodePath("HealthComponent")
@@ -785,6 +784,5 @@ health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FeetArea"]
 position = Vector2(1.70299e-07, 13.5714)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_3wyg7")
 debug_color = Color(0.826625, 0.937208, 0.9538, 0.42)
