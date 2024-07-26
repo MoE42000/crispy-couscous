@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://buwmwcyc10g48"]
 
-[ext_resource type="Script" path="res://Scripts/Environment/drop_through_platform.gd" id="1_172tw"]
+[ext_resource type="Script" path="res://Scripts/Environment/drop_through_platform.gd" id="1_6dcoo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d03he"]
 size = Vector2(16, 3)
@@ -11,7 +11,7 @@ size = Vector2(16, 3)
 [node name="StaticBody2D" type="StaticBody2D" node_paths=PackedStringArray("detection_area")]
 position = Vector2(0, -6)
 collision_mask = 6
-script = ExtResource("1_172tw")
+script = ExtResource("1_6dcoo")
 detection_area = NodePath("DetectionArea")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

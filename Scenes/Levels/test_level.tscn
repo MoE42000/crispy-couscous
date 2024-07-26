@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dsxcke5aj3opc"]
+[gd_scene load_steps=8 format=3 uid="uid://dsxcke5aj3opc"]
 
 [ext_resource type="PackedScene" uid="uid://dshkjesdj58q8" path="res://Scenes/Enemies/sprinter_enemy.tscn" id="1_a04xb"]
 [ext_resource type="PackedScene" uid="uid://33hqhc547bqr" path="res://Scenes/tile_map.tscn" id="1_wrimt"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dgfh4l7fu72bd" path="res://Scenes/Enemies/swinger_enemy.tscn" id="5_mb5l4"]
 [ext_resource type="PackedScene" uid="uid://ccdxqjtx41enu" path="res://Scenes/Enemies/flying_enemy.tscn" id="5_rqhqd"]
 [ext_resource type="PackedScene" uid="uid://bapmgr0b6xx20" path="res://Scenes/Hazards/wall_spike_shooter.tscn" id="6_chreu"]
+[ext_resource type="PackedScene" uid="uid://c3w6n2xqh4ok5" path="res://Scenes/Hazards/bouncing_hazard.tscn" id="7_oev32"]
 
 [node name="TestLevel" type="Node2D"]
 
@@ -48,97 +49,99 @@ position = Vector2(329, 244)
 
 [node name="Hazards" type="Node2D" parent="."]
 
-[node name="Sprite2D" parent="Hazards" instance=ExtResource("6_chreu")]
+[node name="ShootingSpikes" type="Node2D" parent="Hazards"]
+
+[node name="Sprite2D" parent="Hazards/ShootingSpikes" instance=ExtResource("6_chreu")]
 position = Vector2(98, 63)
 shoot_rate = 3.5
 
-[node name="Sprite2D2" parent="Hazards" instance=ExtResource("6_chreu")]
+[node name="Sprite2D2" parent="Hazards/ShootingSpikes" instance=ExtResource("6_chreu")]
 position = Vector2(9, 79)
 rotation = -1.5708
 shoot_rate = 2.0
 projectile_speed = 150.0
 
-[node name="Sprite2D6" parent="Hazards" instance=ExtResource("6_chreu")]
+[node name="Sprite2D6" parent="Hazards/ShootingSpikes" instance=ExtResource("6_chreu")]
 position = Vector2(-202.5, 79)
 rotation = -1.5708
 shoot_rate = 2.0
 projectile_speed = 150.0
 
-[node name="Sprite2D7" parent="Hazards" instance=ExtResource("6_chreu")]
+[node name="Sprite2D7" parent="Hazards/ShootingSpikes" instance=ExtResource("6_chreu")]
 position = Vector2(-184, 79)
-rotation = 4.71239
+rotation = -1.5708
 shoot_rate = 2.0
 start_shooting_offset = 1.0
 projectile_speed = 150.0
 
-[node name="Sprite2D8" parent="Hazards" instance=ExtResource("6_chreu")]
+[node name="Sprite2D8" parent="Hazards/ShootingSpikes" instance=ExtResource("6_chreu")]
 position = Vector2(-168, 79)
 rotation = -1.5708
 shoot_rate = 2.0
 projectile_speed = 150.0
 
-[node name="Sprite2D9" parent="Hazards" instance=ExtResource("6_chreu")]
+[node name="Sprite2D9" parent="Hazards/ShootingSpikes" instance=ExtResource("6_chreu")]
 position = Vector2(-151, 79)
 rotation = -1.5708
 shoot_rate = 2.0
 start_shooting_offset = 1.0
 projectile_speed = 150.0
 
-[node name="Sprite2D10" parent="Hazards" instance=ExtResource("6_chreu")]
+[node name="Sprite2D10" parent="Hazards/ShootingSpikes" instance=ExtResource("6_chreu")]
 position = Vector2(-135.5, 79.0001)
 rotation = -1.5708
 shoot_rate = 2.0
 projectile_speed = 150.0
 
-[node name="Sprite2D11" parent="Hazards" instance=ExtResource("6_chreu")]
+[node name="Sprite2D11" parent="Hazards/ShootingSpikes" instance=ExtResource("6_chreu")]
 position = Vector2(-117, 79)
-rotation = 4.71239
+rotation = -1.5708
 shoot_rate = 2.0
 start_shooting_offset = 1.0
 projectile_speed = 150.0
 
-[node name="Sprite2D12" parent="Hazards" instance=ExtResource("6_chreu")]
+[node name="Sprite2D12" parent="Hazards/ShootingSpikes" instance=ExtResource("6_chreu")]
 position = Vector2(-101, 79)
 rotation = -1.5708
 shoot_rate = 2.0
 projectile_speed = 150.0
 
-[node name="Sprite2D13" parent="Hazards" instance=ExtResource("6_chreu")]
+[node name="Sprite2D13" parent="Hazards/ShootingSpikes" instance=ExtResource("6_chreu")]
 position = Vector2(-84, 79)
 rotation = -1.5708
 shoot_rate = 2.0
 start_shooting_offset = 1.0
 projectile_speed = 150.0
 
-[node name="Sprite2D3" parent="Hazards" instance=ExtResource("6_chreu")]
+[node name="Sprite2D3" parent="Hazards/ShootingSpikes" instance=ExtResource("6_chreu")]
 position = Vector2(174, 421)
 rotation = -3.14159
 shoot_rate = 2.0
 projectile_speed = 150.0
 
-[node name="Sprite2D4" parent="Hazards" instance=ExtResource("6_chreu")]
+[node name="Sprite2D4" parent="Hazards/ShootingSpikes" instance=ExtResource("6_chreu")]
 position = Vector2(174, 356)
 rotation = -3.14159
 shoot_rate = 2.0
 projectile_speed = 150.0
 
-[node name="Sprite2D5" parent="Hazards" instance=ExtResource("6_chreu")]
+[node name="Sprite2D5" parent="Hazards/ShootingSpikes" instance=ExtResource("6_chreu")]
 position = Vector2(174, 293)
 rotation = -3.14159
 shoot_rate = 2.0
 projectile_speed = 150.0
 
-[node name="Sprite2D14" parent="Hazards" instance=ExtResource("6_chreu")]
-position = Vector2(338, 453.5)
-shoot_rate = 2.0
-projectile_speed = 150.0
-
-[node name="Sprite2D15" parent="Hazards" instance=ExtResource("6_chreu")]
+[node name="Sprite2D15" parent="Hazards/ShootingSpikes" instance=ExtResource("6_chreu")]
 position = Vector2(338, 388.5)
 shoot_rate = 2.0
 projectile_speed = 150.0
 
-[node name="Sprite2D16" parent="Hazards" instance=ExtResource("6_chreu")]
+[node name="Sprite2D16" parent="Hazards/ShootingSpikes" instance=ExtResource("6_chreu")]
 position = Vector2(338, 325.5)
 shoot_rate = 2.0
 projectile_speed = 150.0
+
+[node name="BouncingHazard" parent="Hazards" instance=ExtResource("7_oev32")]
+position = Vector2(53, 444)
+dir = Vector2(0, 1)
+speed = 10.0

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d26niujm37hll" path="res://assets/tileset/decorations/BackgroundDecorations.png" id="2_7o7kd"]
 [ext_resource type="Texture2D" uid="uid://bqw7tx8xba0jj" path="res://assets/tileset/decorations/animated_tiles/fireflies/fireflies.png" id="3_nne3t"]
 [ext_resource type="PackedScene" uid="uid://bapmgr0b6xx20" path="res://Scenes/Hazards/wall_spike_shooter.tscn" id="4_jxqgs"]
-[ext_resource type="PackedScene" uid="uid://buwmwcyc10g48" path="res://drop_through_platform.tscn" id="5_m4ygk"]
+[ext_resource type="PackedScene" uid="uid://buwmwcyc10g48" path="res://Scenes/drop_through_platform.tscn" id="5_m4ygk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p4lw4"]
 texture = ExtResource("1_cdr5h")

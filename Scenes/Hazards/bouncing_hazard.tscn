@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3w6n2xqh4ok5"]
+
+[ext_resource type="Script" path="res://Scripts/Environment/Hazards/moveable_hazard.gd" id="1_qwst7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6ppjo"]
+radius = 7.07107
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_61l7i"]
+radius = 8.0
+
+[node name="BouncingHazard" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_qwst7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6ppjo")
+
+[node name="HurtArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea"]
+shape = SubResource("CircleShape2D_61l7i")
+debug_color = Color(0.684558, 0.449353, 0.595939, 0.42)

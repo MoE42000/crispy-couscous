@@ -63,13 +63,10 @@ func _player_health_changed() -> void:
 	hit_box_component.turn_invincible()
 	
 func drop_through() -> bool:
-	print("Attempting drop through:", drop_through_platform, on_drop_through_platform)
 	if drop_through_platform and on_drop_through_platform:
 		drop_through_platform.set_deferred("monitoring", true)
-		print("Drop through successful")
 		return true
 	else:
-		print("Drop through failed")
 		return false
 		
 func flip_sprite():
