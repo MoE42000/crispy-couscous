@@ -152,6 +152,14 @@ var speed : float
 var speed_timer : Timer
 
 @onready var hurt_area : Area2D = $HurtArea
+@onready var sprite : Sprite2D = $Sprite2D
+
+var tween : Tween 
+	#var animation_length := .1
+	#var landscape_mode:bool = (GameParameters.orientation == 0)
+	#animation_tween.tween_property(sprite, "scale:x" if landscape_mode else "scale:y", 2.5, animation_length/2)
+	#animation_tween.parallel().tween_property(sprite, "scale:y" if landscape_mode else "scale:x", .5, animation_length/2)
+
 
 func _ready():
 	if !change_on_bounce:
@@ -163,11 +171,22 @@ func _ready():
 		
 	velocity = initial_dir.normalized() * initial_speed
 	hurt_area.body_entered.connect(_on_body_entered)
+	
 
 func _physics_process(delta: float) -> void:
 	# Move and check for collisions
 	var collision_info = move_and_collide(velocity * delta)
 	if collision_info:
+		tween = create_tween()
+		var y_scale : float = (1 - .60 * abs(cos(collision_info.get_angle()))) * (1 + .30 * abs(sin(collision_info.get_angle())))
+		var x_scale :float = (1 + .60 * abs(sin(collision_info.get_angle()))) * (1 + .30 * abs(cos(collision_info.get_angle())))
+	
+		tween.tween_property(sprite, "scale:x", x_scale,.1)
+		tween.parallel().tween_property(sprite, "scale:y", y_scale, .1)
+		
+		tween.tween_property(sprite, "scale:x", 1,.1)
+		tween.parallel().tween_property(sprite, "scale:y", 1, .1)
+		
 		if change_on_bounce:
 			update_speed()
 		velocity = velocity.bounce(collision_info.get_normal())

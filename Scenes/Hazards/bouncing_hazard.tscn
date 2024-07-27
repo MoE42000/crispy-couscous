@@ -1,12 +1,76 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3w6n2xqh4ok5"]
+[gd_scene load_steps=8 format=3 uid="uid://c3w6n2xqh4ok5"]
 
 [ext_resource type="Script" path="res://Scripts/Environment/Hazards/moveable_hazard.gd" id="1_qwst7"]
+[ext_resource type="Texture2D" uid="uid://gtgu3fb0r5ek" path="res://assets/tileset/hazards/tmp_bouncing_hazard.png" id="2_m4xp3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6ppjo"]
 radius = 7.07107
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_61l7i"]
 radius = 8.0
+
+[sub_resource type="Animation" id="Animation_h31oc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_nsl75"]
+resource_name = "idle"
+length = 0.49
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_m4xp3")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dbnbc"]
+_data = {
+"RESET": SubResource("Animation_h31oc"),
+"idle": SubResource("Animation_nsl75")
+}
 
 [node name="BouncingHazard" type="CharacterBody2D"]
 collision_layer = 4
@@ -22,3 +86,13 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea"]
 shape = SubResource("CircleShape2D_61l7i")
 debug_color = Color(0.684558, 0.449353, 0.595939, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_m4xp3")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dbnbc")
+}
+autoplay = "idle"
