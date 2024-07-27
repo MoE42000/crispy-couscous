@@ -13,6 +13,9 @@ var sm : StateMachine
 @export var ability : String
 
 @export 
+var detection_distance : float = 90
+
+@export 
 var enemy_strength : float = 5
 @export
 var facing_direction :int = -1

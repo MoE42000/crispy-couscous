@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cx6bagad1nojm"]
+
+[ext_resource type="Script" path="res://Scripts/Environment/Hazards/static_spike_area.gd" id="1_0q3gn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jqkhf"]
+size = Vector2(16, 16)
+
+[node name="Area2D" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_0q3gn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jqkhf")
+debug_color = Color(0.999805, 0, 0.100546, 0.42)

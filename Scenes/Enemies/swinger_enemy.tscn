@@ -27,7 +27,7 @@ shader_parameter/color = null
 shader_parameter/flashState = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7q5pl"]
-size = Vector2(22.7188, 29.75)
+size = Vector2(35.3594, 31.875)
 
 [sub_resource type="Animation" id="Animation_if6vd"]
 length = 0.001
@@ -279,11 +279,11 @@ character = NodePath("..")
 shapes = [NodePath("FlipableShape")]
 
 [node name="FlipableShape" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(-8, -2)
+position = Vector2(-14, -3)
 shape = SubResource("RectangleShape2D_7q5pl")
 script = ExtResource("13_hmqq7")
-facing_left_pos = Vector2(-8, -2)
-facing_right_pos = Vector2(8, -2)
+facing_left_pos = Vector2(-14, -3)
+facing_right_pos = Vector2(14, -3)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
