@@ -29,19 +29,6 @@ var change_time_rate : float
 var speed_values : Array[float]
 var speed_value_index : int = 0
 var speed_range : Vector2
-	
-@export var direction_change_type : DIRECTION_CHANGE_TYPES = DIRECTION_CHANGE_TYPES.None :
-	set(value):
-		direction_change_type = value
-		notify_property_list_changed()
-
-enum DIRECTION_CHANGE_TYPES {
-	None,
-	X,
-	Y,
-}
-
-var change_direction_time_rate : float
 
 func _get_property_list() -> Array[Dictionary]:
 	var properties : Array[Dictionary] = []
@@ -158,23 +145,11 @@ func _get_property_list() -> Array[Dictionary]:
 				})
 		_ :
 			properties
-	
-	if direction_change_type != DIRECTION_CHANGE_TYPES.None:
-		properties.append({
-			"name":"change_direction_time_rate",
-			"type":TYPE_FLOAT,
-			"usage":PROPERTY_USAGE_DEFAULT,
-			"hint":PROPERTY_HINT_ENUM,
-			"hint_string":""
-		})
-	
+
 	return properties
 
 var speed : float
 var speed_timer : Timer
-var direction_timer : Timer
-
-
 
 @onready var hurt_area : Area2D = $HurtArea
 
@@ -185,13 +160,6 @@ func _ready():
 		add_child(speed_timer)
 		speed_timer.timeout.connect(_on_speed_timer_timeout)
 		speed_timer.start()
-	
-	if direction_change_type != DIRECTION_CHANGE_TYPES.None:
-		direction_timer = Timer.new()
-		direction_timer.wait_time = change_direction_time_rate
-		add_child(direction_timer)
-		direction_timer.timeout.connect(_on_direction_timer_timeout)
-		direction_timer.start()
 		
 	velocity = initial_dir.normalized() * initial_speed
 	hurt_area.body_entered.connect(_on_body_entered)
@@ -202,7 +170,6 @@ func _physics_process(delta: float) -> void:
 	if collision_info:
 		if change_on_bounce:
 			update_speed()
-		print("deberia bounce")
 		velocity = velocity.bounce(collision_info.get_normal())
 
 
@@ -227,19 +194,6 @@ func update_speed():
 			
 func _on_speed_timer_timeout():
 	update_speed()
-	
-func update_direction():
-	match direction_change_type:
-		DIRECTION_CHANGE_TYPES.X:
-			velocity.x *= -1
-		DIRECTION_CHANGE_TYPES.Y:
-			velocity.y *= -1
-		_:
-			pass
-			
-func _on_direction_timer_timeout():
-	update_direction()
-	
 	
 	
 func _on_body_entered(body):

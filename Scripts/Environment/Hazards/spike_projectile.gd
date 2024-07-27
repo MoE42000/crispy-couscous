@@ -8,6 +8,7 @@ var spawn_rotation: float
 
 var _travelled_distance : float
 var _max_range : float = 1000
+var projectile_damage : float
 
 func _ready():
 	global_position = spawn_pos
@@ -28,5 +29,5 @@ func _process(_delta):
 func _on_body_entered(body):
 	for child in body.get_children():
 		if child is HealthComponent:
-			child.damage(5)
+			child.damage(projectile_damage)
 	queue_free()

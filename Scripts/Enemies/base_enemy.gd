@@ -1,14 +1,16 @@
 extends CharacterBody2D
 class_name BaseEnemy
 
+@onready  
+var health_component : HealthComponent = $HealthComponent
+@onready 
+var hit_box_component : HitBoxComponent = $HitBoxComponent
+@onready  
+var sprite : Sprite2D = $Sprite2D
+@onready 
+var sm : StateMachine = $StateMachine
 @export 
-var health_component : HealthComponent
-@export 
-var hit_box_component : HitBoxComponent
-@export 
-var sprite : Sprite2D
-@export 
-var sm : StateMachine
+var speed : float = 90
 
 @export var ability : String
 

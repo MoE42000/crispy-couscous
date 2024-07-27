@@ -615,18 +615,10 @@ size = Vector2(37.1429, 31.4283)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3wyg7"]
 size = Vector2(11.4286, 4.28571)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement", "health_component", "hit_box_component", "feet_area", "sprite", "facing_raycast", "feet_raycast", "animation_tree")]
+[node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.7, 0.7)
 collision_layer = 2
 script = ExtResource("1_u7ms0")
-movement = NodePath("MovementComponent")
-health_component = NodePath("HealthComponent")
-hit_box_component = NodePath("HitBoxComponent")
-feet_area = NodePath("FeetArea")
-sprite = NodePath("Sprite2D")
-facing_raycast = NodePath("FacingRaycast")
-feet_raycast = NodePath("FeetRaycast")
-animation_tree = NodePath("AnimationTree")
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2.91965)
@@ -638,7 +630,7 @@ script = ExtResource("8_gd1hq")
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("11_gcpp5")
-health = 1000.0
+health = 20.0
 
 [node name="HitBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("collision_shape", "health_component")]
 collision_layer = 2
@@ -762,6 +754,7 @@ facing_right_pos = Vector2(7, 0)
 target_position = Vector2(0, 20)
 
 [node name="StateDebugger" type="Label" parent="." node_paths=PackedStringArray("sm")]
+visible = false
 offset_left = 11.4286
 offset_top = -10.0
 offset_right = 51.4286
@@ -770,6 +763,7 @@ script = ExtResource("5_t1uc1")
 sm = NodePath("../StateMachine")
 
 [node name="AbilityDebugger" type="Label" parent="."]
+visible = false
 offset_left = -15.7143
 offset_top = -35.7143
 offset_right = 24.2857
@@ -777,8 +771,10 @@ offset_bottom = -12.7143
 script = ExtResource("6_s61kd")
 
 [node name="HealthLabel" type="Label" parent="." node_paths=PackedStringArray("health_component")]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = -20.0
+offset_top = -30.0
+offset_right = 20.0
+offset_bottom = -7.0
 script = ExtResource("26_ct88g")
 health_component = NodePath("../HealthComponent")
 

@@ -1,7 +1,5 @@
-
 extends StaticSpikeArea
-
-@onready var directional_area : Area2D = $DirectionalArea
+class_name OneWayCollisionSpikes
 
 func _ready():
 	super()

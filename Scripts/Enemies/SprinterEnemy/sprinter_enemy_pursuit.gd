@@ -1,6 +1,6 @@
 extends State
 
-@export var speed : float = 90
+
 var dir : int
 
 func enter() -> void :
@@ -19,5 +19,5 @@ func process(_delta):
 
 func process_physics(delta):
 	character.move_and_slide()
-	character.velocity.x = speed * dir
+	character.velocity.x = character.speed * dir
 	character.velocity.y += Global.GRAVITY * delta

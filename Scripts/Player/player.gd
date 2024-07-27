@@ -2,22 +2,22 @@ extends CharacterBody2D
 class_name Player
 
 
-@export 
-var movement : MovementComponent
-@export 
-var health_component : HealthComponent
-@export 
-var hit_box_component : HitBoxComponent
-@export
-var feet_area : Area2D
-@export 
-var sprite : Sprite2D
-@export 
-var facing_raycast: RayCast2D
-@export 
-var feet_raycast: RayCast2D
-@export 
-var animation_tree : AnimationTree
+@onready 
+var movement : MovementComponent = $MovementComponent
+@onready  
+var health_component : HealthComponent = $HealthComponent
+@onready  
+var hit_box_component : HitBoxComponent = $HitBoxComponent
+@onready 
+var feet_area : Area2D = $FeetArea
+@onready 
+var sprite : Sprite2D = $Sprite2D
+@onready 
+var facing_raycast: RayCast2D = $FacingRaycast
+@onready 
+var feet_raycast: RayCast2D = $FeetRaycast
+@onready 
+var animation_tree : AnimationTree = $AnimationTree
 
 signal changed_facing_direction(facing_right:bool)
 signal sword_hit_something
