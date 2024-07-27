@@ -16,7 +16,7 @@ var sm : StateMachine
 var detection_distance : float = 90
 
 @export 
-var enemy_strength : float = 5
+var touch_damage : float = 5
 @export
 var facing_direction :int = -1
 
@@ -67,7 +67,7 @@ func _enemy_health_changed():
 	
 func _on_body_entered(body):
 	if body is Player:
-		body.health_component.damage(enemy_strength)
+		body.health_component.damage(touch_damage)
 
 func _on_body_exited(_body):
 	pass

@@ -21,6 +21,7 @@ var animation_tree : AnimationTree
 
 signal changed_facing_direction(facing_right:bool)
 signal sword_hit_something
+signal falling
 
 var drop_through_platform : Area2D
 var on_drop_through_platform : bool
@@ -58,9 +59,10 @@ func _physics_process(_delta):
 func player_died() -> void:
 	get_tree().reload_current_scene()
 	
-func _player_health_changed() -> void:
-	sprite_flash(Color(1,1,1,.5),.9,3)
-	hit_box_component.turn_invincible()
+func _player_health_changed(lost_health) -> void:
+	if lost_health:
+		sprite_flash(Color(1,1,1,.5),.9,3)
+		hit_box_component.turn_invincible()
 	
 func drop_through() -> bool:
 	if drop_through_platform and on_drop_through_platform:
@@ -100,8 +102,7 @@ func _on_feet_area_body_exited(body):
 		#on_drop_through_platform = false
 	
 func _on_body_entered(body):
-	if body is BaseEnemy:
-		health_component.damage(body.damage)
+	pass
 	
 func _on_body_exited(body):
 	pass

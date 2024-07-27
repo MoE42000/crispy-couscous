@@ -9,5 +9,5 @@ func _ready():
 	text = str(health_component.health)
 	health_component.health_changed.connect(change_display)
 	
-func change_display():
+func change_display(_lost_health):
 	text = str(health_component.health)

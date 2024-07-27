@@ -1,8 +1,9 @@
-[gd_scene load_steps=86 format=3 uid="uid://chsry4aj6ykmv"]
+[gd_scene load_steps=87 format=3 uid="uid://chsry4aj6ykmv"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_u7ms0"]
 [ext_resource type="Script" path="res://Scripts/Player/States/player_run.gd" id="4_a214h"]
 [ext_resource type="Script" path="res://Scripts/Player/States/player_idle.gd" id="4_kbnd3"]
+[ext_resource type="Script" path="res://Scripts/Player/Areas/player_hitbox_component.gd" id="4_pld5r"]
 [ext_resource type="Script" path="res://Debugging/state_label.gd" id="5_t1uc1"]
 [ext_resource type="Script" path="res://Scripts/Player/States/player_jump.gd" id="5_ylfsl"]
 [ext_resource type="Script" path="res://Scripts/Player/States/player_fall.gd" id="6_0iqux"]
@@ -11,7 +12,6 @@
 [ext_resource type="Script" path="res://Scripts/StateMachine/state_machine.gd" id="9_c2gyw"]
 [ext_resource type="Script" path="res://Scripts/Player/States/player_attack.gd" id="11_7lnmu"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerHealthComponent.gd" id="11_gcpp5"]
-[ext_resource type="Script" path="res://Scripts/Player/player_hitbox_component.gd" id="12_5y34a"]
 [ext_resource type="Script" path="res://Scripts/Player/States/player_slide.gd" id="12_eg4wq"]
 [ext_resource type="Script" path="res://Scripts/Player/States/player_wall_jump.gd" id="13_pc6up"]
 [ext_resource type="Texture2D" uid="uid://ddwrbjwdyolxi" path="res://assets/player_animations/Jump.png" id="14_3u7pu"]
@@ -22,13 +22,14 @@
 [ext_resource type="Script" path="res://Scripts/Player/States/double_jump.gd" id="15_0k2pf"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/flash.gdshader" id="15_1uwph"]
 [ext_resource type="Script" path="res://Scripts/Player/States/player_up_attack.gd" id="15_mg2jf"]
-[ext_resource type="Script" path="res://Scripts/Player/attack_area.gd" id="16_aaygn"]
 [ext_resource type="Texture2D" uid="uid://dgx1uddilhs5k" path="res://assets/player_animations/UpAttack.png" id="16_gawxb"]
 [ext_resource type="Script" path="res://Scripts/Components/filpable_shape_component.gd" id="17_3phmd"]
 [ext_resource type="Texture2D" uid="uid://km8qnkg2y8um" path="res://assets/player_animations/particles/sprint_run.png" id="17_j6ps6"]
 [ext_resource type="Texture2D" uid="uid://8fbeqe2lqtev" path="res://assets/player_animations/Run.png" id="18_gk3bs"]
 [ext_resource type="Texture2D" uid="uid://im70mjux6omc" path="res://assets/player_animations/WallJump.png" id="19_aa0k7"]
+[ext_resource type="Script" path="res://Scripts/Player/Areas/attack_area.gd" id="25_hjpwk"]
 [ext_resource type="Script" path="res://Debugging/EnemyHealthLabel.gd" id="26_ct88g"]
+[ext_resource type="Script" path="res://Scripts/Player/Areas/feet_area.gd" id="30_hhej4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hrfle"]
 size = Vector2(11.4286, 21.8878)
@@ -640,7 +641,9 @@ script = ExtResource("11_gcpp5")
 health = 1000.0
 
 [node name="HitBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("collision_shape", "health_component")]
-script = ExtResource("12_5y34a")
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("4_pld5r")
 collision_shape = NodePath("Shape")
 health_component = NodePath("../HealthComponent")
 
@@ -727,10 +730,9 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/move/blend_position = 0.0
 
 [node name="AttackArea" type="Area2D" parent="." node_paths=PackedStringArray("character", "shapes")]
-collision_layer = 7
-collision_mask = 7
+collision_mask = 5
 monitoring = false
-script = ExtResource("16_aaygn")
+script = ExtResource("25_hjpwk")
 character = NodePath("..")
 shapes = [NodePath("MainAttack"), NodePath("UpAttack")]
 
@@ -781,6 +783,8 @@ script = ExtResource("26_ct88g")
 health_component = NodePath("../HealthComponent")
 
 [node name="FeetArea" type="Area2D" parent="."]
+collision_layer = 2
+script = ExtResource("30_hhej4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FeetArea"]
 position = Vector2(1.70299e-07, 13.5714)

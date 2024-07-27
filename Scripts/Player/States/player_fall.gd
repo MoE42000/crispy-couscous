@@ -10,6 +10,7 @@ var coyote_timer :float
 
 func enter() -> void:
 	super()
+	character.falling.emit()
 	jump_buffer_timer = 0
 	coyote_timer = coyote_time
 	
