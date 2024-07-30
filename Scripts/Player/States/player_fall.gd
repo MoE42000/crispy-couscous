@@ -44,7 +44,10 @@ func process(delta) -> void:
 			transitioned.emit(self, "slide")
 	
 	if character.movement.wants_attack():
-		transitioned.emit(self,'attack')
+		if character.movement.get_up_down_input() > 0:
+			transitioned.emit(self,'down_attack')
+		else:
+			transitioned.emit(self,'attack')
 
 	
 func process_physics(delta) -> void:

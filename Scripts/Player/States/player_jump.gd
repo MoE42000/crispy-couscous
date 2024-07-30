@@ -23,7 +23,10 @@ func process(delta) -> void:
 	super(delta)
 		
 	if character.movement.wants_attack():
-		transitioned.emit(self,'attack')
+		if character.movement.get_up_down_input() > 0:
+			transitioned.emit(self,'down_attack')
+		else:
+			transitioned.emit(self,'attack')
 		
 	if character.velocity.y > 0:
 		transitioned.emit(self, "fall") 

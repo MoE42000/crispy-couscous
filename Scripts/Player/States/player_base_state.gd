@@ -20,7 +20,6 @@ func process_physics(_delta:float) -> void:
 		character.handle_flipping(character.direction_input)
 	
 	if !character.is_on_floor() and character.movement.wants_jump() and character.current_ability == "double_jump":
-		print(state_name)
 		if !(state_name in ["slide"]) :
 			transitioned.emit(self,"double_jump")
 			character.current_ability = ""

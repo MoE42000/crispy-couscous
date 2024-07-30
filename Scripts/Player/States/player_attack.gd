@@ -48,4 +48,7 @@ func attack_finished(animation_finished) -> void:
 			
 func _recoil():
 	await get_tree().create_timer(.05).timeout
-	transitioned.emit(self,"recoil")
+	if state_name == "down_attack":
+		transitioned.emit(self,"double_jump")
+	else:
+		transitioned.emit(self,"recoil")

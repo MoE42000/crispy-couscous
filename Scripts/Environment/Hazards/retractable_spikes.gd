@@ -20,6 +20,7 @@ func _on_body_entered(_body):
 	animation_player.play("coming_out")
 
 func _on_body_exited(_body):
+	await get_tree().create_timer(.25).timeout
 	animation_player.play("going_in")
 
 func _on_area_entered_damaging_area(area):

@@ -9,26 +9,33 @@ var hit_box_component : HitBoxComponent = $HitBoxComponent
 var sprite : Sprite2D = $Sprite2D
 @onready 
 var sm : StateMachine = $StateMachine
-@export 
-var speed : float = 90
 
-@export var ability : String
 
+@export_group("Stats")
 @export 
 var detection_distance : float = 90
+@export 
+var health : float = 10
 
+@export_group("Other")
 @export 
 var touch_damage : float = 5
 @export
 var facing_direction :int = -1
+@export 
+var ability : String
 
 signal changed_facing_direction
 
 func _ready():
-	
+	hit_box_component.set_collision_layer_value(3, true)
+	hit_box_component.set_collision_layer_value(1, false)
+	hit_box_component.set_collision_mask_value(2, true)
+	hit_box_component.set_collision_mask_value(1, false)
+	health_component.health = health
 	health_component.health_depleted.connect(_enemy_died)
 	health_component.health_changed.connect(_enemy_health_changed)
-	hit_box_component.body_entered.connect(_on_body_entered)
+	hit_box_component.area_entered.connect(_on_area_entered)
 	hit_box_component.body_exited.connect(_on_body_exited)
 	hit_box_component.set_collision_layer(3)
 	
@@ -67,9 +74,8 @@ func _enemy_died():
 func _enemy_health_changed():
 	sprite_flash(Color(1,1,1,.5))
 	
-func _on_body_entered(body):
-	if body is Player:
-		body.health_component.damage(touch_damage)
+func _on_area_entered(area): # Make sure masks are correct
+	area.damage(touch_damage)
 
 func _on_body_exited(_body):
 	pass

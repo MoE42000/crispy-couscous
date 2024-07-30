@@ -42,7 +42,7 @@ var facing_direction : int = 1
 func _ready() -> void:
 	
 	Global.player = self
-	
+	sprite.material.set_shader_parameter("flashState", 0)
 	health_component.health_depleted.connect(player_died)
 	health_component.health_changed.connect(_player_health_changed)
 	hit_box_component.body_entered.connect(_on_body_entered)

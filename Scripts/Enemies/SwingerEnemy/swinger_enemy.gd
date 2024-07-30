@@ -2,6 +2,8 @@ extends BaseEnemy
 class_name SwingerEnemy
 
 @onready var edge_checking_raycast := $EdgeChecker
+@export 
+var speed : float = 90
 
 func flip_sprite():
 	super()

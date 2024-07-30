@@ -6,11 +6,12 @@ class_name PlayerSwordArea
 func _on_body_entered(body):
 	#if !(body is Player):
 	if body != get_parent():
-		Global.player.sword_hit_something.emit()
+		
 		for child in body.get_children():
 			
 			if child is HitBoxComponent:
 				child.damage(sword_damage)
+				Global.player.sword_hit_something.emit()
 	
 				
 func _changed_facing_direction(dir:float):
