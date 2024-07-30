@@ -71,8 +71,9 @@ func _enemy_died():
 	Global.player.current_ability = ability
 	queue_free()
 	
-func _enemy_health_changed():
-	sprite_flash(Color(1,1,1,.5))
+func _enemy_health_changed(lost_health):
+	if lost_health:
+		sprite_flash(Color(1,1,1,.5))
 	
 func _on_area_entered(area): # Make sure masks are correct
 	area.damage(touch_damage)
