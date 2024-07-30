@@ -261,8 +261,8 @@ script = ExtResource("1_dl5bt")
 material = SubResource("ShaderMaterial_cay1c")
 position = Vector2(4, -7)
 scale = Vector2(0.53125, 0.5625)
-texture = ExtResource("3_6hyx4")
-hframes = 7
+texture = ExtResource("3_svyvr")
+hframes = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)

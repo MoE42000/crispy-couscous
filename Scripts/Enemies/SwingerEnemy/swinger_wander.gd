@@ -2,8 +2,6 @@ extends State
 
 var wander_distance: float
 var moving_right: bool
-@export 
-var walk_speed = 20
 
 func enter() -> void:
 	change_animation(animation_name)
@@ -31,7 +29,7 @@ func process_physics(delta) -> void:
 	if wander_distance > 0:
 		# Move character left or right
 		var direction = 1 if moving_right else -1
-		character.velocity.x = direction * walk_speed
+		character.velocity.x = direction * character.speed
 		wander_distance -= abs(character.velocity.x) * delta
 
 	else:

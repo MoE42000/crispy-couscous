@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=3 uid="uid://chsry4aj6ykmv"]
+[gd_scene load_steps=96 format=3 uid="uid://chsry4aj6ykmv"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_u7ms0"]
 [ext_resource type="Script" path="res://Scripts/Player/States/player_run.gd" id="4_a214h"]
@@ -31,6 +31,7 @@
 [ext_resource type="Script" path="res://Scripts/Player/Areas/attack_area.gd" id="25_hjpwk"]
 [ext_resource type="Texture2D" uid="uid://dd1npxkfuxbi2" path="res://assets/player_animations/AttackDown.png" id="25_tl5rf"]
 [ext_resource type="Script" path="res://Debugging/EnemyHealthLabel.gd" id="26_ct88g"]
+[ext_resource type="Texture2D" uid="uid://dv6ynenun7g7v" path="res://assets/player_animations/particles/AttackingHitJuice.png" id="29_v2fqa"]
 [ext_resource type="Script" path="res://Scripts/Player/Areas/feet_area.gd" id="30_hhej4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hrfle"]
@@ -59,6 +60,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [10]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AttackArea/AttackHit:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_35ndh"]
@@ -112,6 +125,30 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [6]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AttackArea/AttackHit:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AttackArea/AttackHit:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
 }
 
 [sub_resource type="Animation" id="Animation_ttqgg"]
@@ -189,6 +226,54 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprite2D:hframes")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AttackArea/AttackHit:frame")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AttackArea/AttackHit:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, 25)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("AttackArea/AttackHit:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.61967]
 }
 
 [sub_resource type="Animation" id="Animation_m7uiy"]
@@ -698,13 +783,13 @@ transitions = ["jump", "fall", SubResource("AnimationNodeStateMachineTransition_
 graph_offset = Vector2(-232.696, -177.964)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_74r1j"]
-size = Vector2(31.75, 21)
+size = Vector2(38.7321, 21)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vpm6r"]
 size = Vector2(37.1429, 31.4283)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2hjxv"]
-size = Vector2(27.8571, 21.4286)
+size = Vector2(33.9286, 29.2857)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3wyg7"]
 size = Vector2(11.4286, 4.28571)
@@ -724,7 +809,7 @@ script = ExtResource("8_gd1hq")
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("11_gcpp5")
-health = 20.0
+health = 1000.0
 
 [node name="HitBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("collision_shape", "health_component")]
 collision_layer = 2
@@ -805,9 +890,8 @@ animation_name = "down_attack"
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_27xec")
 position = Vector2(7.14286, -14.2857)
-texture = ExtResource("25_tl5rf")
-hframes = 7
-frame = 6
+texture = ExtResource("14_smri5")
+hframes = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -828,7 +912,8 @@ character = NodePath("..")
 shapes = [NodePath("MainAttack"), NodePath("UpAttack")]
 
 [node name="MainAttack" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(20, 2.35715)
+position = Vector2(23.4911, 2.35715)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_74r1j")
 debug_color = Color(0.767928, 0.383481, 0.602128, 0.42)
 script = ExtResource("17_3phmd")
@@ -836,6 +921,7 @@ facing_left_pos = Vector2(-20, 3)
 facing_right_pos = Vector2(20, 3)
 
 [node name="UpAttack" type="CollisionShape2D" parent="AttackArea"]
+visible = false
 position = Vector2(22, -24)
 shape = SubResource("RectangleShape2D_vpm6r")
 disabled = true
@@ -845,10 +931,21 @@ facing_left_pos = Vector2(-22, -24)
 facing_right_pos = Vector2(22, -24)
 
 [node name="DownAttack" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(0, 25.7143)
+visible = false
+position = Vector2(0, 31.4286)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_2hjxv")
 disabled = true
 debug_color = Color(0.578323, 0.442024, 0.85897, 0.42)
+
+[node name="AttackHit" type="Sprite2D" parent="AttackArea"]
+visible = false
+position = Vector2(25, -3)
+texture = ExtResource("29_v2fqa")
+hframes = 4
+script = ExtResource("17_3phmd")
+facing_left_pos = Vector2(-25, 8)
+facing_right_pos = Vector2(25, -3)
 
 [node name="FacingRaycast" type="RayCast2D" parent="."]
 script = ExtResource("17_3phmd")
@@ -859,10 +956,10 @@ facing_right_pos = Vector2(7, 0)
 target_position = Vector2(0, 20)
 
 [node name="StateDebugger" type="Label" parent="." node_paths=PackedStringArray("sm")]
-offset_left = 11.4286
-offset_top = -10.0
-offset_right = 51.4286
-offset_bottom = 13.0
+offset_left = -58.5714
+offset_top = -8.57143
+offset_right = -18.5714
+offset_bottom = 14.4286
 script = ExtResource("5_t1uc1")
 sm = NodePath("../StateMachine")
 

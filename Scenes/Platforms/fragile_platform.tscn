@@ -1,0 +1,86 @@
+[gd_scene load_steps=8 format=3 uid="uid://ci5v5lw66m0mk"]
+
+[ext_resource type="Texture2D" uid="uid://bup22pg4502ip" path="res://assets/tileset/terrain/BreakingPlatform.png" id="1_lw86d"]
+[ext_resource type="Script" path="res://Scripts/Environment/breaking_platform.gd" id="1_ynlku"]
+
+[sub_resource type="Animation" id="Animation_0601c"]
+resource_name = "break"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaticBody2D/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_66sl8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bjob5"]
+_data = {
+"RESET": SubResource("Animation_66sl8"),
+"break": SubResource("Animation_0601c")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nc06k"]
+size = Vector2(16, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d0nuk"]
+size = Vector2(16, 10)
+
+[node name="BreakingPlatform" type="Area2D"]
+position = Vector2(0, -8)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_ynlku")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bjob5")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_nc06k")
+debug_color = Color(0.480656, 0.510158, 0.337928, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_lw86d")
+hframes = 7
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_d0nuk")

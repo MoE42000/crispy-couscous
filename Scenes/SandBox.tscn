@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://33hqhc547bqr" path="res://Scenes/tile_map.tscn" id="1_w4odt"]
 [ext_resource type="PackedScene" uid="uid://chsry4aj6ykmv" path="res://Scenes/player.tscn" id="2_64r5y"]
 [ext_resource type="PackedScene" uid="uid://cmix4kxb3hydj" path="res://Scenes/Decorations/standing_rock.tscn" id="4_ib7f2"]
-[ext_resource type="PackedScene" uid="uid://buwmwcyc10g48" path="res://Scenes/drop_through_platform.tscn" id="5_vw7av"]
+[ext_resource type="PackedScene" uid="uid://buwmwcyc10g48" path="res://Scenes/Platforms/drop_through_platform.tscn" id="5_vw7av"]
 [ext_resource type="PackedScene" uid="uid://bjfu1s5gr1yhh" path="res://Scenes/Decorations/rock_bundle.tscn" id="6_64fpg"]
 
 [node name="Node2D" type="Node2D"]
