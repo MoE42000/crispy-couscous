@@ -37,7 +37,6 @@ func _ready():
 	health_component.health_changed.connect(_enemy_health_changed)
 	hit_box_component.area_entered.connect(_on_area_entered)
 	hit_box_component.body_exited.connect(_on_body_exited)
-	hit_box_component.set_collision_layer(3)
 	
 	
 

@@ -797,6 +797,7 @@ size = Vector2(11.4286, 4.28571)
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.7, 0.7)
 collision_layer = 2
+collision_mask = 17
 script = ExtResource("1_u7ms0")
 
 [node name="Shape" type="CollisionShape2D" parent="."]
@@ -809,7 +810,7 @@ script = ExtResource("8_gd1hq")
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("11_gcpp5")
-health = 1000.0
+health = 20.0
 
 [node name="HitBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("collision_shape", "health_component")]
 collision_layer = 2
@@ -913,7 +914,6 @@ shapes = [NodePath("MainAttack"), NodePath("UpAttack")]
 
 [node name="MainAttack" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(23.4911, 2.35715)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_74r1j")
 debug_color = Color(0.767928, 0.383481, 0.602128, 0.42)
 script = ExtResource("17_3phmd")
@@ -933,7 +933,6 @@ facing_right_pos = Vector2(22, -24)
 [node name="DownAttack" type="CollisionShape2D" parent="AttackArea"]
 visible = false
 position = Vector2(0, 31.4286)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_2hjxv")
 disabled = true
 debug_color = Color(0.578323, 0.442024, 0.85897, 0.42)
@@ -981,6 +980,7 @@ health_component = NodePath("../HealthComponent")
 
 [node name="FeetArea" type="Area2D" parent="."]
 collision_layer = 0
+collision_mask = 17
 script = ExtResource("30_hhej4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FeetArea"]

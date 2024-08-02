@@ -22,8 +22,9 @@ DamageManager="*res://Scripts/player_damaged_manager.gd"
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
+window/size/viewport_width=640
+window/size/viewport_height=360
+window/stretch/mode="canvas_items"
 
 [dotnet]
 
@@ -79,7 +80,7 @@ Ability={
 2d_render/layer_1="World"
 2d_render/layer_2="Player"
 2d_render/layer_3="Enemies"
-2d_render/layer_4="DropThrough"
+2d_render/layer_5="DropThrough"
 2d_physics/layer_1="World"
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Enemies"

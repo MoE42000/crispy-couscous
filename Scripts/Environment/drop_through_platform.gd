@@ -7,7 +7,7 @@ class_name DropThroughPlatform
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	set_collision_mask_value(2, true)
+	#set_collision_mask_value(2, true)
 	#set_collision_mask_value(3, true)
 	
 	detection_area.set_collision_mask_value(2, true)
@@ -17,7 +17,7 @@ func _ready():
 
 
 func _on_body_entered(body):
-	body.set_collision_mask_value(1, false)
+	body.set_collision_mask_value(5, false)
 	await get_tree().create_timer(.2).timeout
-	body.set_collision_mask_value(1, true)
+	body.set_collision_mask_value(5, true)
 	detection_area.set_deferred("monitoring", false)
