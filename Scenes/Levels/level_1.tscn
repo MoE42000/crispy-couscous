@@ -21,15 +21,6 @@ current_ability = "double_jump"
 position_smoothing_enabled = true
 script = ExtResource("2_y6txo")
 
-[node name="MovingHazard" parent="." instance=ExtResource("4_vmpud")]
-position = Vector2(140.708, 185)
-movement_type = 1
-positions = Array[Vector2]([Vector2(140, 125), Vector2(140, 185), Vector2(230, 185)])
-movements_duration = 1.0
-position_delays = Array[float]([0.5, 0.0, 0.5])
-transition_name = ""
-ease_name = ""
-
 [node name="BreakingPlatform" parent="." instance=ExtResource("5_xp7ao")]
 position = Vector2(50, 176)
 
@@ -38,3 +29,12 @@ position = Vector2(110, 154)
 
 [node name="BreakingPlatform3" parent="." instance=ExtResource("5_xp7ao")]
 position = Vector2(58, 117)
+
+[node name="MovingHazard2" parent="BreakingPlatform3" instance=ExtResource("4_vmpud")]
+position = Vector2(1.77051, -22.9215)
+scale = Vector2(0.5, 0.5)
+movement_type = 2
+initial_position = Vector2(0, -3)
+radius = 20.0
+speed = 3.0
+rotation_delay = 3.0
