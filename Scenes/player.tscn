@@ -891,8 +891,9 @@ animation_name = "down_attack"
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_27xec")
 position = Vector2(7.14286, -14.2857)
-texture = ExtResource("14_smri5")
-hframes = 6
+texture = ExtResource("14_3u7pu")
+hframes = 5
+frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -937,7 +938,8 @@ debug_color = Color(0.578323, 0.442024, 0.85897, 0.42)
 
 [node name="AttackHit" type="Sprite2D" parent="AttackArea"]
 visible = false
-position = Vector2(25, -3)
+position = Vector2(8, 25)
+rotation = 1.61967
 texture = ExtResource("29_v2fqa")
 hframes = 4
 script = ExtResource("17_3phmd")
