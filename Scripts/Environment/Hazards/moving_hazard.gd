@@ -25,14 +25,21 @@ func _get_property_list() -> Array[Dictionary]:
 				"type":TYPE_ARRAY,
 				"usage":PROPERTY_USAGE_DEFAULT,
 				"hint":PROPERTY_HINT_ENUM,
-				"hint_string":""
+				"nt_string":""
 			})
 			properties.append({
-				"name":"movement_durations",
-				"type":TYPE_ARRAY,
+				"name":"movements_duration",
+				"type":TYPE_FLOAT,
 				"usage":PROPERTY_USAGE_DEFAULT,
 				"hint":PROPERTY_HINT_ENUM,
 				"hint_string":""
+			})
+			properties.append({
+				"name":"position_delays",
+				"type":TYPE_ARRAY,
+				"usage":PROPERTY_USAGE_DEFAULT,
+				"hint":PROPERTY_HINT_ENUM,
+				"nt_string":""
 			})
 			properties.append({
 				"name":"transition_name",
@@ -69,9 +76,10 @@ enum TRANSITION_TYPES  {
  
 var transition_type = TRANSITION_TYPES.LINEAR
 
+var movements_duration: float
 var positions: Array[Vector2]
-var movement_durations: Array[float]
-var movement_duration_index: int = 0
+var position_delays : Array[float]
+
 var transition_name: String 
 var ease_name: String
 var tween: Tween 
@@ -85,22 +93,24 @@ func _ready():
 	start_animation()
 
 func start_animation():
-	movement_duration_index = 0
-	animate_movements(positions)
+	animate_movements(positions.slice(1), position_delays)
 	
 	# boomerang
 	var reverse_movements = positions.duplicate()
+	var reverse_delays = position_delays.duplicate()
 	reverse_movements.reverse()
-	animate_movements(reverse_movements)
+	reverse_delays.reverse()
+	animate_movements(reverse_movements.slice(1),reverse_delays)
 
 	tween.set_loops()
 
-func animate_movements(positions: Array[Vector2]):
-	for pos in positions.slice(1):
-		var movement_speed = movement_durations[movement_duration_index]
-		movement_duration_index = (movement_duration_index + 1) % movement_durations.size()
+func animate_movements(positions: Array[Vector2], delays: Array[float]):
+	var position_delays_index: int = 0
+	for pos in positions:
+		var delay = delays[position_delays_index]
+		position_delays_index = (position_delays_index + 1) % delays.size()
 		# TODO: Add movement delay
-		tween.tween_property(self, "position", pos, movement_speed).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_EXPO)#.set_delay(movement_delay)
+		tween.tween_property(self, "position", pos, movements_duration).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_EXPO).set_delay(delay)
 
 		position = pos  # Update the position immediately to chain the next tween properly
 
