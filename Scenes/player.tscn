@@ -921,7 +921,6 @@ facing_left_pos = Vector2(-20, 3)
 facing_right_pos = Vector2(20, 3)
 
 [node name="UpAttack" type="CollisionShape2D" parent="AttackArea"]
-visible = false
 position = Vector2(22, -24)
 shape = SubResource("RectangleShape2D_vpm6r")
 disabled = true
@@ -931,7 +930,6 @@ facing_left_pos = Vector2(-22, -24)
 facing_right_pos = Vector2(22, -24)
 
 [node name="DownAttack" type="CollisionShape2D" parent="AttackArea"]
-visible = false
 position = Vector2(0, 31.4286)
 shape = SubResource("RectangleShape2D_2hjxv")
 disabled = true

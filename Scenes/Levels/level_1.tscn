@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bcpkmdllr4qjt"]
+[gd_scene load_steps=5 format=3 uid="uid://bcpkmdllr4qjt"]
 
 [ext_resource type="PackedScene" uid="uid://chsry4aj6ykmv" path="res://Scenes/player.tscn" id="1_ot5fx"]
 [ext_resource type="PackedScene" uid="uid://33hqhc547bqr" path="res://Scenes/tile_map.tscn" id="1_t48ke"]
 [ext_resource type="Script" path="res://Scripts/LevelManagement/transition_camera.gd" id="2_y6txo"]
+[ext_resource type="PackedScene" uid="uid://clto5nc51wdbw" path="res://Scenes/Hazards/moving_hazard.tscn" id="4_vmpud"]
 
 [node name="Level1" type="Node2D"]
 
@@ -18,3 +19,11 @@ current_ability = "double_jump"
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position_smoothing_enabled = true
 script = ExtResource("2_y6txo")
+
+[node name="MovingHazard" parent="." instance=ExtResource("4_vmpud")]
+position = Vector2(140, 80)
+movement_type = 1
+positions = Array[Vector2]([Vector2(140, 80), Vector2(140, 185), Vector2(230, 185)])
+movement_durations = Array[float]([1.2, 1.2])
+transition_name = ""
+ease_name = ""
