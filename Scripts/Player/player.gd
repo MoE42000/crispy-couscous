@@ -36,7 +36,8 @@ var sprint_speed_val : float = 80
 var sprint_speed : float = 0
 
 @export
-var current_ability : String
+var ability : String = ""
+var current_ability : String = ability
 
 var facing_direction : int = 1
 

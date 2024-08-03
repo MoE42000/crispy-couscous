@@ -36,5 +36,5 @@ func process_physics(_delta:float) -> void:
 					transitioned.emit(self,"up_attack")
 			_:
 				pass
-		character.current_ability = ""
+		character.current_ability = character.ability
 	character.move_and_slide()

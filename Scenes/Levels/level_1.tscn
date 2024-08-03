@@ -15,7 +15,6 @@ layer_4/tile_data = PackedInt32Array(589838, 4, 65536, 14, 4, 65536, 15, 4, 6553
 
 [node name="Player" parent="." instance=ExtResource("1_ot5fx")]
 position = Vector2(232, 133)
-current_ability = "double_jump"
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position_smoothing_enabled = true
@@ -31,10 +30,17 @@ position = Vector2(110, 154)
 position = Vector2(58, 117)
 
 [node name="MovingHazard2" parent="BreakingPlatform3" instance=ExtResource("4_vmpud")]
-position = Vector2(1.77051, -22.9215)
+position = Vector2(-11.2719, 13.521)
 scale = Vector2(0.5, 0.5)
 movement_type = 2
 initial_position = Vector2(0, -3)
 radius = 20.0
 speed = 3.0
-rotation_delay = 3.0
+rotation_delay = 1.5
+
+[node name="MovingHazard" parent="." instance=ExtResource("4_vmpud")]
+position = Vector2(207, 207)
+movement_type = 1
+positions = Array[Vector2]([Vector2(90, 208), Vector2(207, 208)])
+movements_duration = 1.0
+position_delays = Array[float]([0.0, 0.0])

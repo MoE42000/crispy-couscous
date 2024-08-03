@@ -115,16 +115,14 @@ func _ready():
 	match movement_type:
 		
 		MOVEMENT_TYPES.Linear:
-			tween = get_tree().create_tween()
+			tween = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_EXPO)#
 			tween.finished.connect(_on_tween_finished)
 			start_animation()
 		MOVEMENT_TYPES.Circular:
 			if rotation_delay > 0:
 				rotation_delay_timer = Timer.new()
-				rotation_delay_timer.one_shot = true
-				print("added tiemr")
-				add_child(rotation_delay_timer)
-				print(rotation_delay_timer)
+				rotation_delay_timer.autostart = true
+				rotation_delay_timer.one_shot = true  
 				rotation_delay_timer.timeout.connect(_on_rotation_delay_timeout)
 		_:
 			pass
@@ -151,10 +149,11 @@ func start_animation():
 
 func animate_movements(positions: Array[Vector2], delays: Array[float]):
 	var position_delays_index: int = 0
+
 	for pos in positions:
 		var delay = delays[position_delays_index]
 		position_delays_index = (position_delays_index + 1) % delays.size()
-		tween.tween_property(self, "position", pos, movements_duration).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_EXPO).set_delay(delay)
+		tween.tween_property(self, "position", pos, movements_duration).set_delay(delay)
 
 		position = pos  # Update the position immediately to chain the next tween properly
 
