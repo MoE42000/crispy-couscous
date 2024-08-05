@@ -37,7 +37,7 @@ func process(delta) -> void:
 		else:
 			transitioned.emit(self, "idle")
 			
-	if character.facing_raycast.is_colliding() and character.direction_input != 0:
+	if character.is_on_wall() and character.direction_input != 0:#character.facing_raycast.is_colliding() and character.direction_input != 0:
 		if jump_buffer_timer > 0:
 			transitioned.emit(self, "wall_jump")
 		else:

@@ -23,7 +23,6 @@ position = Vector2(-88, -12)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -30)
-zoom = Vector2(8, 8)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 drag_left_margin = 0.25
@@ -45,9 +44,9 @@ scale = Vector2(15, 1)
 spike_damage = 100.0
 
 [node name="BouncingHazard" parent="Hazards" instance=ExtResource("6_j8pdw")]
-position = Vector2(-3, -6.18949)
+position = Vector2(-3, -11.1911)
 scale = Vector2(0.6, 0.6)
-velocity = Vector2(0, 150)
+velocity = Vector2(0, 30)
 initial_dir = Vector2(0, -1)
 speed_change_type = 1
 speed_change = 10.0
@@ -83,9 +82,9 @@ position = Vector2(1052, -286)
 touch_damage = 10.0
 
 [node name="BouncingHazard" parent="." instance=ExtResource("6_j8pdw")]
-position = Vector2(1236.36, -135)
+position = Vector2(1164.31, -135)
 scale = Vector2(0.6, 1)
-velocity = Vector2(-40, 0)
+velocity = Vector2(60, 0)
 initial_dir = Vector2(1, 0)
 speed_change_type = 3
 speed_values = Array[float]([60.0, 40.0, 65.0])

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://vhjhagqao7yj"]
+[gd_scene load_steps=7 format=3 uid="uid://vhjhagqao7yj"]
 
 [ext_resource type="PackedScene" uid="uid://fcj5hvhuyxwh" path="res://Scenes/Levels/Rooms/corridor_room.tscn" id="1_0yfib"]
 [ext_resource type="PackedScene" uid="uid://nsk7wuh1clvy" path="res://Scenes/Levels/Rooms/template_room.tscn" id="2_pqs1g"]
 [ext_resource type="PackedScene" uid="uid://bisp3m8uq61y8" path="res://Scenes/Levels/Rooms/room1.tscn" id="3_d1tk0"]
 [ext_resource type="PackedScene" uid="uid://chsry4aj6ykmv" path="res://Scenes/player.tscn" id="4_6kxr7"]
-[ext_resource type="Script" path="res://Scripts/LevelManagement/transition_camera.gd" id="5_hbqfi"]
+[ext_resource type="PackedScene" uid="uid://2pfw78h2rmgt" path="res://Scenes/Levels/Rooms/longer_template_room.tscn" id="5_obp2g"]
+[ext_resource type="PackedScene" uid="uid://c52314g0etgil" path="res://Scenes/Levels/Rooms/half_size_room_template.tscn" id="6_6cinp"]
 
 [node name="TESTTTT" type="Node2D"]
 
@@ -19,10 +20,12 @@ position = Vector2(0, 368)
 [node name="TemplateRoom3" parent="." instance=ExtResource("2_pqs1g")]
 position = Vector2(640, 368)
 
-[node name="Player" parent="." instance=ExtResource("4_6kxr7")]
-position = Vector2(16, 224)
-ability = "double_jump"
+[node name="LongerTemplateRoom" parent="." instance=ExtResource("5_obp2g")]
+position = Vector2(-1024, 0)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position_smoothing_enabled = true
-script = ExtResource("5_hbqfi")
+[node name="SmallerRoomTemplate" parent="." instance=ExtResource("6_6cinp")]
+position = Vector2(1280, 64)
+
+[node name="Player" parent="." instance=ExtResource("4_6kxr7")]
+position = Vector2(48.0001, 304)
+ability = "double_jump"

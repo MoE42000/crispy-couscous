@@ -15,7 +15,7 @@ func _ready():
 	fall_timer.wait_time = fall_delay
 
 func enter() -> void:
-	super() 
+	super()
 	facing_dir = character.direction_input
 	sliding = true
 	
