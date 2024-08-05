@@ -10,22 +10,31 @@
 [node name="TESTTTT" type="Node2D"]
 
 [node name="CorridorRoom" parent="." instance=ExtResource("1_0yfib")]
-position = Vector2(640, 0)
+position = Vector2(480, 0)
 
 [node name="TemplateRoom" parent="." instance=ExtResource("2_pqs1g")]
 
 [node name="TemplateRoom2" parent="." instance=ExtResource("3_d1tk0")]
-position = Vector2(0, 368)
+position = Vector2(0, 704)
 
 [node name="TemplateRoom3" parent="." instance=ExtResource("2_pqs1g")]
-position = Vector2(640, 368)
+position = Vector2(0, 272)
 
 [node name="LongerTemplateRoom" parent="." instance=ExtResource("5_obp2g")]
-position = Vector2(-1024, 0)
+position = Vector2(-1040, 0)
 
 [node name="SmallerRoomTemplate" parent="." instance=ExtResource("6_6cinp")]
-position = Vector2(1280, 64)
+position = Vector2(960, 0)
+
+[node name="SmallerRoomTemplate2" parent="." instance=ExtResource("6_6cinp")]
+position = Vector2(960, 192)
+
+[node name="SmallerRoomTemplate3" parent="." instance=ExtResource("6_6cinp")]
+position = Vector2(1280, 0)
+
+[node name="SmallerRoomTemplate4" parent="." instance=ExtResource("6_6cinp")]
+position = Vector2(1280, 192)
 
 [node name="Player" parent="." instance=ExtResource("4_6kxr7")]
-position = Vector2(48.0001, 304)
+position = Vector2(112, 176)
 ability = "double_jump"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://xocb611li5fj"]
+[gd_scene load_steps=14 format=3 uid="uid://xocb611li5fj"]
 
 [ext_resource type="PackedScene" uid="uid://33hqhc547bqr" path="res://Scenes/tile_map.tscn" id="1_esybl"]
 [ext_resource type="PackedScene" uid="uid://chsry4aj6ykmv" path="res://Scenes/player.tscn" id="2_x56tn"]
@@ -8,6 +8,21 @@
 [ext_resource type="PackedScene" uid="uid://c3w6n2xqh4ok5" path="res://Scenes/Hazards/bouncing_hazard.tscn" id="6_j8pdw"]
 [ext_resource type="PackedScene" uid="uid://dgfh4l7fu72bd" path="res://Scenes/Enemies/swinger_enemy.tscn" id="7_2opna"]
 [ext_resource type="PackedScene" uid="uid://c0bsurryjspll" path="res://Scenes/Decorations/lamp_light.tscn" id="8_1lqeq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xl3dj"]
+size = Vector2(498, 229)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pbprx"]
+size = Vector2(275, 401)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p7bvl"]
+size = Vector2(292, 244)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a5ncr"]
+size = Vector2(303, 139)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ac87"]
+size = Vector2(215, 392)
 
 [node name="NivelCosinoIan" type="Node2D"]
 
@@ -21,7 +36,7 @@ layer_4/tile_data = PackedInt32Array(-262137, 4, 65536, 24, 3, 196608, 25, 3, 19
 [node name="Player" parent="." instance=ExtResource("2_x56tn")]
 position = Vector2(-88, -12)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera2D2" type="Camera2D" parent="Player"]
 position = Vector2(0, -30)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
@@ -44,9 +59,9 @@ scale = Vector2(15, 1)
 spike_damage = 100.0
 
 [node name="BouncingHazard" parent="Hazards" instance=ExtResource("6_j8pdw")]
-position = Vector2(-3, -11.1911)
+position = Vector2(-3, -31.8105)
 scale = Vector2(0.6, 0.6)
-velocity = Vector2(0, 30)
+velocity = Vector2(0, -50)
 initial_dir = Vector2(0, -1)
 speed_change_type = 1
 speed_change = 10.0
@@ -82,9 +97,9 @@ position = Vector2(1052, -286)
 touch_damage = 10.0
 
 [node name="BouncingHazard" parent="." instance=ExtResource("6_j8pdw")]
-position = Vector2(1164.31, -135)
+position = Vector2(1232.97, -135)
 scale = Vector2(0.6, 1)
-velocity = Vector2(60, 0)
+velocity = Vector2(50, 0)
 initial_dir = Vector2(1, 0)
 speed_change_type = 3
 speed_values = Array[float]([60.0, 40.0, 65.0])
@@ -105,3 +120,47 @@ position = Vector2(1352, -79)
 
 [node name="LampLight3" parent="." instance=ExtResource("8_1lqeq")]
 position = Vector2(281, -34)
+
+[node name="Areas" type="Node" parent="."]
+
+[node name="Area2D" type="Area2D" parent="Areas"]
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Area2D"]
+position = Vector2(34, -75.5)
+shape = SubResource("RectangleShape2D_xl3dj")
+
+[node name="Area2D2" type="Area2D" parent="Areas"]
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Area2D2"]
+position = Vector2(421.5, -122.5)
+shape = SubResource("RectangleShape2D_pbprx")
+
+[node name="Area2D3" type="Area2D" parent="Areas"]
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Area2D3"]
+position = Vector2(705, -72)
+shape = SubResource("RectangleShape2D_p7bvl")
+
+[node name="Area2D4" type="Area2D" parent="Areas"]
+position = Vector2(1088, -47)
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Area2D4"]
+position = Vector2(-57, 21)
+shape = SubResource("RectangleShape2D_a5ncr")
+
+[node name="Area2D5" type="Area2D" parent="Areas"]
+position = Vector2(1088, -47)
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Area2D5"]
+position = Vector2(203.5, -80)
+shape = SubResource("RectangleShape2D_7ac87")
